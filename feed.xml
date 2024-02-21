@@ -3,7 +3,7 @@
     <title>Rémi的部落格</title>
     <link href="https://rryh-tw.github.io/gh-pages/feed.xml" rel="self" />
     <link href="https://rryh-tw.github.io/gh-pages" />
-    <updated>2024-02-22T00:15:14+08:00</updated>
+    <updated>2024-02-22T02:07:02+08:00</updated>
     <author>
         <name>Rémi</name>
     </author>
@@ -17,76 +17,147 @@
         <link href="https://rryh-tw.github.io/gh-pages/dang-bing-qian-chuan-bi-ye-liao-ran-hou-ni.html"/>
         <id>https://rryh-tw.github.io/gh-pages/dang-bing-qian-chuan-bi-ye-liao-ran-hou-ni.html</id>
 
-        <updated>2024-02-22T00:15:14+08:00</updated>
+        <updated>2024-02-22T01:53:00+08:00</updated>
             <summary>
                 <![CDATA[
-                    現在是10/12凌晨2:00，再六小時後就要當兵... 6月中旬考完最後一次的期末考，十七年的學生生涯在此按下暫停，終於可以好好放鬆，把課業拋到九霄雲外。 帶著輕鬆愉快的心情，條列畢業後的待辦事項： 這漫長的旅程始於去年初，專題教授提議將研究成果寫成論文。 我的研究領域是手勢辨識，透過數學運算，分類出即時影像的人體手勢。老實說我覺得我的方法完全沒有發表價值，整個方法很一般般，但基於想試試看寫出一篇論文，還是接下了挑戰。 原本預計去年底完成，課業壓力讓我根本沒什麼進展。年初又找了另一個投稿目標，仍未能準時完成。畢業後終於有時間好好重新檢視，把程式碼寫好，實驗做好，總算找到這篇論文的價值與完成動力。教授聽完報告大半夜興沖沖的找到合適的演討會，再一次擬好投稿時間，兩個月後完成。衝刺一下，開會時間也改為一個禮拜兩次（畢業了教授還是很照顧我）。 一切還算順利，直到要統整最後的實驗數據，我發現我想出的方法很多缺失，數據結過證明就是個爛方法。我不斷的想辦法優化、想解方。程式碼越寫越亂，於是不斷地重寫，加功能，再重寫，再加功能。開會前不斷的熬夜，最終成功的錯過教授理想中的第三次投稿時間...... 繼續的開會與修改，將實驗方法確認、簡化，要當兵了，只好「不情願的」交接給學妹做最後收尾。 畢業後少了課業壓力，以為閒了下來，接了一個工讀機會，工作內容聽一聽只是將建模師的3D模型匯入Unity，再加一些功能就行了，雖然沒有碰過Unity，但作為寫程式的人，應該都有自己寫出遊戲的衝動。評估一下時間和能力，這應該會是有趣的休閒小專案。 此專案的目標是10月中旬的展覽，9月中是我真正的開工時間，一開始就遇到疑難雜症（參閱SketchUp to Unity大模型轉移），緊張了三天連第一步都做不出來，這時收到了兵單，又驚又喜，火上加油，四週的趕工時間硬生生再少了三分之一，嚴格來說，我要在15天內生出一個完整遊戲出來。沒有懷疑人生的時間，五天的摸索，有了個雛形，沒有通宵做不出來的事！ 再進一步的討論展覽方式，決定要使用VR設備讓參觀者互動。 大事不妙，3D遊戲轉VR基本上是重做的概念。VR算是遊戲中的一個大主題，全名為虛擬實境（Virtual Reality），需要戴VR眼鏡，遊戲搖桿操作，我甚至自己也從來沒玩過。VR遊戲開發尚未到很熱門，網路上的資源不多，這意味著遇到問題較難找出解方，幸好朋友傳了一份大學修課簡報讓我參考。 繼續擠壓睡眠時間，高度壓力讓我沒什麼睡覺仍精神抖擻，每天Google到很絕望，也逐漸拼湊出頭盔、搖桿運行原理。五天後，把處理VR遇到的疑難雜症排解完了，腦袋有辦法勾勒出完成的實作程序，鬆了一口氣。 一樣通宵後的早晨，把成果push的Github*上準備前往台北測試，當我如往常的git add/commit後，git外掛large file system(LFS)因為沒有設定好，把很多檔案內容永久性的改成不相關的東西（詳細問題原因參考這裡：all pointer file）。這個外掛是Unity使用git才第一次接觸，我也不熟，只是照網路上的教學使用。簡單來說，檔案永久性刪除了，五天的心血，無數的通宵時間，付之一炬。人生從來沒有如此的絕望。 整個人失魂落魄地前往台北，所有的難題要再重新面對一次，五天的時間要壓縮到更極致的兩天，早上8點在辦公室研究到晚上11點，正逢雙十連假，要在台北找過夜的旅館又貴又難，在十一點半花了2000訂了青旅，抵達現場門口寫著十一點後不再受理入住，什麼爛系統！此時只覺得人生爛到想發笑，在街頭無助的晃啊晃，總算在凌晨一點找到住宿。 兩天後，也是當兵的前一天，仍然是通宵後前往台北，我搭七點多停靠站較多的高鐵，可以睡比較久，壓力終究使人無法入眠，最後一天，最後的調整，總算做出是可以上得了檯面的作品，在下午一點確認專案大致完成，可以收工了！ 趕緊再搭火車回家，回到彰化下午三點多，終於能和住國外難得回家的哥哥玩耍，拖著疲勞的身體直接去和哥哥打網球，這兩小時，我感受到我的血糖好低，快暈倒了，但這可是兄弟難得的相處時光呀！ 晚餐吃了頓大餐，晚上9:30趕快去剪光頭為今天當兵準備。摸摸頭，哇，馬上就可以進去軍中好好休息，心中滿是喜悅。 *Github：可以想成很厲害的儲存程式碼的雲端硬碟系統。 寫於10/12 修改於10/29
+                    現在是10/12凌晨2:00，再六小時後就要當兵... 6月中旬考完最後一次的期末考，十七年的學生生涯在此按下暫停，終於可以好好放鬆，把課業拋到九霄雲外。 帶著輕鬆愉快的心情，條列畢業後的待辦事項： 嗯…真不對勁，接著和大家細數這些事，如何耗盡我當兵前的時間與精力。 這漫長的旅程始於去年初，專題教授提議將研究成果寫成論文。&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
-                <p data-original-attrs="{&quot;style&quot;:&quot;&quot;}"><span data-keep-original-tag="false" data-original-attrs="{&quot;face&quot;:&quot;-webkit-standard, serif&quot;}">現在是10/12凌晨2:00，再六小時後就要當兵...</span></p>
-<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}"><span data-keep-original-tag="false" data-original-attrs="{&quot;face&quot;:&quot;-webkit-standard, serif&quot;}">6月中旬考完最後一次的期末考，十七年的學生生涯在此按下暫停，終於可以好好放鬆，把課業拋到九霄雲外。</span></p>
-<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}"><span data-keep-original-tag="false" data-original-attrs="{&quot;face&quot;:&quot;-webkit-standard, serif&quot;}">帶著輕鬆愉快的心情，條列畢業後的待辦事項：</span></p>
-<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}"> </p>
-<ol data-original-attrs="{&quot;style&quot;:&quot;&quot;}">
-<li><span data-keep-original-tag="false" data-original-attrs="{&quot;face&quot;:&quot;-webkit-standard, serif&quot;}">完成論文</span></li>
-<li><span data-keep-original-tag="false" data-original-attrs="{&quot;face&quot;:&quot;-webkit-standard, serif&quot;}">NCU APP上架</span></li>
-<li><span data-keep-original-tag="false" data-original-attrs="{&quot;face&quot;:&quot;-webkit-standard, serif&quot;}">APCS暑期課程講課</span></li>
-<li><span data-keep-original-tag="false" data-original-attrs="{&quot;face&quot;:&quot;-webkit-standard, serif&quot;}">德文檢定準備</span></li>
+                <p>現在是10/12凌晨2:00，再六小時後就要當兵...</p>
+<p>6月中旬考完最後一次的期末考，十七年的學生生涯在此按下暫停，終於可以好好放鬆，把課業拋到九霄雲外。</p>
+<p>帶著輕鬆愉快的心情，條列畢業後的待辦事項：</p>
+<ol>
+<li>完成論文</li>
+<li>NCU APP上架</li>
+<li>APCS暑期課程講課</li>
+<li>德文檢定準備</li>
 <li>Unity工讀專案</li>
 </ol>
-<div>嗯…真不對勁，接著和大家細數這些事，如何耗盡我當兵前的時間與精力。</div>
-<div> </div>
-<h2 data-original-attrs="{&quot;style&quot;:&quot;&quot;}">論文 - 是助力，還是絆腳石？</h2>
-<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">這漫長的旅程始於去年初，專題教授提議將研究成果寫成論文。</p>
-<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">我的研究領域是手勢辨識，透過數學運算，分類出即時影像的人體手勢。老實說我覺得我的方法完全沒有發表價值，整個方法很一般般，但基於想試試看寫出一篇論文，還是接下了挑戰。</p>
-<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">原本預計去年底完成，課業壓力讓我根本沒什麼進展。年初又找了另一個投稿目標，仍未能準時完成。畢業後終於有時間好好重新檢視，把程式碼寫好，實驗做好，總算找到這篇論文的價值與完成動力。教授聽完報告大半夜興沖沖的找到合適的演討會，再一次擬好投稿時間，兩個月後完成。衝刺一下，開會時間也改為一個禮拜兩次（畢業了教授還是很照顧我）。</p>
-<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">一切還算順利，直到要統整最後的實驗數據，我發現我想出的方法很多缺失，數據結過證明就是個爛方法。我不斷的想辦法優化、想解方。程式碼越寫越亂，於是不斷地重寫，加功能，再重寫，再加功能。開會前不斷的熬夜，最終成功的錯過教授理想中的第三次投稿時間......</p>
-<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">繼續的開會與修改，將實驗方法確認、簡化，要當兵了，只好「不情願的」交接給學妹做最後收尾。</p>
-<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}"> </p>
-<div>
-<h2 data-original-attrs="{&quot;style&quot;:&quot;&quot;}">NCU APP 上架 - 歷經了三年，只好再n年。</h2>
-NCU APP是大一下同學揪一揪自發性想做的專案，目的是想讓中央大學學生有個好用工具，在大學生活更方便。</div>
-<div>我們每年招募成員、培訓、開發，到了大四卻未有實質成果，令我覺得很可惜。大四時，我決定接手處理這看似要石沈大海的專案。一年下來完成度不錯。畢業後不斷的微調、優化，花了幾天研究上架方法，到後來演變為沒空處理放到一邊。很慶幸交接的下一屆負責人很用心，目前快要可以開放大家使用了。</div>
-<div>
-<div class="separator" data-original-attrs="{&quot;style&quot;:&quot;&quot;}"><a data-original-attrs="{&quot;data-original-href&quot;:&quot;https://blogger.googleusercontent.com/img/a/AVvXsEg5d93XurwuQq-mgxnK_1FCvpWWtDZLzjE9MijDsMfNEIF--x5L1ZvuYwCJNtxnIT7qusorXju-xttzZxt2rVoa5UcRObo2IEbLDaOlU55mRaiVPL6S4nYhXPTzWIf9wb0Qrrhxr0KeYbvZn9WFV0-9lyiS8CxqXd5ZMlfkFIwNelbU1e-ijKQ0SkC6fyQ&quot;,&quot;style&quot;:&quot;&quot;}" href="https://www.blogger.com/blog/post/edit/718738635050331014/5466747577950566946?hl=zh-TW#"><img loading="lazy" src="https://blogger.googleusercontent.com/img/a/AVvXsEg5d93XurwuQq-mgxnK_1FCvpWWtDZLzjE9MijDsMfNEIF--x5L1ZvuYwCJNtxnIT7qusorXju-xttzZxt2rVoa5UcRObo2IEbLDaOlU55mRaiVPL6S4nYhXPTzWIf9wb0Qrrhxr0KeYbvZn9WFV0-9lyiS8CxqXd5ZMlfkFIwNelbU1e-ijKQ0SkC6fyQ" alt="" width="320" height="118" data-original-height="266" data-original-width="724" data-is-external-image="true"></a></div>
-<h3 data-original-attrs="{&quot;style&quot;:&quot;&quot;}"> </h3>
-<h2 data-original-attrs="{&quot;style&quot;:&quot;&quot;}">APCS暑期課程講課 - 當老師真的好難</h2>
-畢業後的另一件事是擔任APCS講師，大四下帶了台北高中的APCS課程，不甘心過了一個學期只教授基礎，有點空虛。我決定利用暑假，學生有較少的課業壓力的時間，傳授畢生所學，至少要教到讓他們有日後成為選手的能力，能夠輕鬆自學，當國手。為期五週的課程總算把遞迴講完，二分搜、動態規劃、圖論草草帶過，進度仍與期望有落差。<br>教了這幾次課，教書的方法與手段仍然很差勁，如何有趣的引導，讓大家輕易的吸收知識，如何講話更清楚，如何和學生混成朋友，我實在摸不透。
-<h3 data-original-attrs="{&quot;style&quot;:&quot;&quot;}"> </h3>
-<h2 data-original-attrs="{&quot;style&quot;:&quot;&quot;}">德文檢定準備 - 就只會嘴巴說說</h2>
-畢業後，我預計出國讀研究所，但事情接踵而來，忙到根本沒時間和興致準備語言檢定，所以這部分只能嘆氣。
-<h3 data-original-attrs="{&quot;style&quot;:&quot;&quot;}"> </h3>
-<h2 data-original-attrs="{&quot;style&quot;:&quot;&quot;}">Unity工讀專案 - 已經窒息</h2>
-<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">畢業後少了課業壓力，以為閒了下來，接了一個工讀機會，工作內容聽一聽只是將建模師的3D模型匯入Unity，再加一些功能就行了，雖然沒有碰過Unity，但作為寫程式的人，應該都有自己寫出遊戲的衝動。評估一下時間和能力，這應該會是有趣的休閒小專案。</p>
-<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">此專案的目標是10月中旬的展覽，9月中是我真正的開工時間，一開始就遇到疑難雜症（參閱<a data-original-attrs="{&quot;data-original-href&quot;:&quot;https://royyaha.blogspot.com/2023/09/sketchup-to-unity.html&quot;,&quot;target&quot;:&quot;_blank&quot;}" href="https://www.blogger.com/blog/post/edit/718738635050331014/5466747577950566946?hl=zh-TW#">SketchUp to Unity大模型轉移</a>），緊張了三天連第一步都做不出來，這時收到了兵單，又驚又喜，火上加油，四週的趕工時間硬生生再少了三分之一，嚴格來說，<strong>我要在15天內生出一個完整遊戲出來</strong>。沒有懷疑人生的時間，五天的摸索，有了個雛形，沒有通宵做不出來的事！</p>
-<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">再進一步的討論展覽方式，決定要使用VR設備讓參觀者互動。<br>大事不妙，3D遊戲轉VR基本上是重做的概念。VR算是遊戲中的一個大主題，全名為虛擬實境（Virtual Reality），需要戴VR眼鏡，遊戲搖桿操作，我甚至自己也從來沒玩過。VR遊戲開發尚未到很熱門，網路上的資源不多，這意味著遇到問題較難找出解方，幸好朋友傳了一份大學修課簡報讓我參考。</p>
-<div>
-<table class="tr-caption-container" cellspacing="0" cellpadding="0" align="center" data-original-attrs="{&quot;style&quot;:&quot;&quot;}">
+<p>嗯…真不對勁，接著和大家細數這些事，如何耗盡我當兵前的時間與精力。</p>
+<h3><span style="color: #3598db;">論文 - 是助力，還是絆腳石？</span></h3>
+<p>這漫長的旅程始於去年初，專題教授提議將研究成果寫成論文。</p>
+<p>我的研究領域是手勢辨識，透過數學運算，分類出即時影像的人體手勢。老實說我覺得我的方法完全沒有發表價值，整個方法很一般般，但基於想試試看寫出一篇論文，還是接下了挑戰。</p>
+<p>原本預計去年底完成，課業壓力讓我根本沒什麼進展。年初又找了另一個投稿目標，仍未能準時完成。畢業後終於有時間好好重新檢視，把程式碼寫好，實驗做好，總算找到這篇論文的價值與完成動力。教授聽完報告大半夜興沖沖的找到合適的演討會，再一次擬好投稿時間，兩個月後完成。衝刺一下，開會時間也改為一個禮拜兩次（畢業了教授還是很照顧我）。</p>
+<p>一切還算順利，直到要統整最後的實驗數據，我發現我想出的方法很多缺失，數據結過證明就是個爛方法。我不斷的想辦法優化、想解方。程式碼越寫越亂，於是不斷地重寫，加功能，再重寫，再加功能。開會前不斷的熬夜，最終成功的錯過教授理想中的第三次投稿時間......</p>
+<p>繼續的開會與修改，將實驗方法確認、簡化，要當兵了，只好「不情願的」交接給學妹做最後收尾。</p>
+<h3><span style="color: #3598db;">NCU APP 上架 - 歷經了三年，只好再n年。</span></h3>
+<p>NCU APP是大一下同學揪一揪自發性想做的專案，目的是想讓中央大學學生有個好用工具，在大學生活更方便。</p>
+<p>我們每年招募成員、培訓、開發，到了大四卻未有實質成果，令我覺得很可惜。大四時，我決定接手處理這看似要石沈大海的專案。一年下來完成度不錯。畢業後不斷的微調、優化，花了幾天研究上架方法，到後來演變為沒空處理放到一邊。很慶幸交接的下一屆負責人很用心，目前快要可以開放大家使用了。</p>
+<figure class="align-center"><a data-original-attrs="{&quot;data-original-href&quot;:&quot;https://blogger.googleusercontent.com/img/a/AVvXsEg5d93XurwuQq-mgxnK_1FCvpWWtDZLzjE9MijDsMfNEIF--x5L1ZvuYwCJNtxnIT7qusorXju-xttzZxt2rVoa5UcRObo2IEbLDaOlU55mRaiVPL6S4nYhXPTzWIf9wb0Qrrhxr0KeYbvZn9WFV0-9lyiS8CxqXd5ZMlfkFIwNelbU1e-ijKQ0SkC6fyQ&quot;,&quot;style&quot;:&quot;&quot;}" href="https://www.blogger.com/blog/post/edit/718738635050331014/5466747577950566946?hl=zh-TW#"><img loading="lazy"  src="https://blogger.googleusercontent.com/img/a/AVvXsEg5d93XurwuQq-mgxnK_1FCvpWWtDZLzjE9MijDsMfNEIF--x5L1ZvuYwCJNtxnIT7qusorXju-xttzZxt2rVoa5UcRObo2IEbLDaOlU55mRaiVPL6S4nYhXPTzWIf9wb0Qrrhxr0KeYbvZn9WFV0-9lyiS8CxqXd5ZMlfkFIwNelbU1e-ijKQ0SkC6fyQ" alt="" width="320" height="118" data-original-height="266" data-original-width="724" data-is-external-image="true"></figure></a></p>
+<h3><span style="color: #3598db;">APCS暑期課程講課 - 當老師真的好難</span></h3>
+<p>畢業後的另一件事是擔任APCS講師，大四下帶了台北高中的APCS課程，不甘心過了一個學期只教授基礎，有點空虛。我決定利用暑假，學生有較少的課業壓力的時間，傳授畢生所學，至少要教到讓他們有日後成為選手的能力，能夠輕鬆自學，當國手。為期五週的課程總算把遞迴講完，二分搜、動態規劃、圖論草草帶過，進度仍與期望有落差。</p>
+<p>教了這幾次課，教書的方法與手段仍然很差勁，如何有趣的引導，讓大家輕易的吸收知識，如何講話更清楚，如何和學生混成朋友，我實在摸不透。</p>
+<h3><span style="color: #3598db;">德文檢定準備 - 就只會嘴巴說說</span></h3>
+<p>畢業後，我預計出國讀研究所，但事情接踵而來，忙到根本沒時間和興致準備語言檢定，所以這部分只能嘆氣。</p>
+<h3><span style="color: #3598db;">Unity工讀專案 - 已經窒息</span></h3>
+<p>畢業後少了課業壓力，以為閒了下來，接了一個工讀機會，工作內容聽一聽只是將建模師的3D模型匯入Unity，再加一些功能就行了，雖然沒有碰過Unity，但作為寫程式的人，應該都有自己寫出遊戲的衝動。評估一下時間和能力，這應該會是有趣的休閒小專案。</p>
+<p>此專案的目標是10月中旬的展覽，9月中是我真正的開工時間，一開始就遇到疑難雜症（參閱<a href="https://rryh-tw.github.io/gh-pages/sketchup-to-unityda-mo-xing-zhuan-yi.html" target="_blank" rel="noopener noreferrer">SketchUp to Unity大模型轉移</a>），緊張了三天連第一步都做不出來，這時收到了兵單，又驚又喜，火上加油，四週的趕工時間硬生生再少了三分之一，嚴格來說，我要在15天內生出一個完整遊戲出來。沒有懷疑人生的時間，五天的摸索，有了個雛形，沒有通宵做不出來的事！</p>
+<p>再進一步的討論展覽方式，決定要使用VR設備讓參觀者互動。</p>
+<p>大事不妙，3D遊戲轉VR基本上是重做的概念。VR算是遊戲中的一個大主題，全名為虛擬實境（Virtual Reality），需要戴VR眼鏡，遊戲搖桿操作，我甚至自己也從來沒玩過。VR遊戲開發尚未到很熱門，網路上的資源不多，這意味著遇到問題較難找出解方，幸好朋友傳了一份大學修課簡報讓我參考。</p>
+<table style="border-collapse: collapse; width: 100%;" border="1">
 <tbody>
 <tr>
-<td data-original-attrs="{&quot;style&quot;:&quot;&quot;}"><a data-original-attrs="{&quot;data-original-href&quot;:&quot;https://blogger.googleusercontent.com/img/a/AVvXsEg7FMvfzTx2VPsdWuZ9jUGxV_RzZUogt8UlAshLLKkv8CRpLNdlinPXvpq7q2VXYIGDgrYEnwrSn6LHHzbLHLWRO0jHNHb0W64JhdNc66968-90H84uSFmOjKy17YuhckeeFaYe4YhCS9tOwrvA896VgDyp_9ybMCY30EBar97MPjYoVrAXftlMQdi9e_U&quot;,&quot;style&quot;:&quot;&quot;}" href="https://www.blogger.com/blog/post/edit/718738635050331014/5466747577950566946?hl=zh-TW#"><img loading="lazy" src="https://blogger.googleusercontent.com/img/a/AVvXsEg7FMvfzTx2VPsdWuZ9jUGxV_RzZUogt8UlAshLLKkv8CRpLNdlinPXvpq7q2VXYIGDgrYEnwrSn6LHHzbLHLWRO0jHNHb0W64JhdNc66968-90H84uSFmOjKy17YuhckeeFaYe4YhCS9tOwrvA896VgDyp_9ybMCY30EBar97MPjYoVrAXftlMQdi9e_U" alt="" width="302" height="240" data-original-height="603" data-original-width="760" data-is-external-image="true"></a></td>
+<td class="align-center" style="width: 99.8575%;"><a data-original-attrs="{&quot;data-original-href&quot;:&quot;https://blogger.googleusercontent.com/img/a/AVvXsEg7FMvfzTx2VPsdWuZ9jUGxV_RzZUogt8UlAshLLKkv8CRpLNdlinPXvpq7q2VXYIGDgrYEnwrSn6LHHzbLHLWRO0jHNHb0W64JhdNc66968-90H84uSFmOjKy17YuhckeeFaYe4YhCS9tOwrvA896VgDyp_9ybMCY30EBar97MPjYoVrAXftlMQdi9e_U&quot;,&quot;style&quot;:&quot;&quot;}" href="https://www.blogger.com/blog/post/edit/718738635050331014/5466747577950566946?hl=zh-TW#"><img loading="lazy" src="https://blogger.googleusercontent.com/img/a/AVvXsEg7FMvfzTx2VPsdWuZ9jUGxV_RzZUogt8UlAshLLKkv8CRpLNdlinPXvpq7q2VXYIGDgrYEnwrSn6LHHzbLHLWRO0jHNHb0W64JhdNc66968-90H84uSFmOjKy17YuhckeeFaYe4YhCS9tOwrvA896VgDyp_9ybMCY30EBar97MPjYoVrAXftlMQdi9e_U" alt="" width="302" height="240" data-original-height="603" data-original-width="760" data-is-external-image="true"></a></td>
 </tr>
 <tr>
-<td class="tr-caption" data-original-attrs="{&quot;style&quot;:&quot;&quot;}">source: <span data-keep-original-tag="false" data-original-attrs="{&quot;style&quot;:&quot;font-size: var(--article-hero-headline--htag--font-size);&quot;,&quot;face&quot;:&quot;var(--article-hero-headline--htag--font-family)&quot;}"><a data-original-attrs="{&quot;data-original-href&quot;:&quot;https://www.nbcnews.com/mach/science/what-vr-devices-apps-turn-real-world-virtual-ncna857001&quot;,&quot;target&quot;:&quot;_blank&quot;}" href="https://www.blogger.com/blog/post/edit/718738635050331014/5466747577950566946?hl=zh-TW#">What is VR? nbcnews</a></span></td>
+<td class="align-center" style="width: 99.8575%;">source: <span data-keep-original-tag="false" data-original-attrs="{&quot;style&quot;:&quot;font-size: var(--article-hero-headline--htag--font-size);&quot;,&quot;face&quot;:&quot;var(--article-hero-headline--htag--font-family)&quot;}"><a data-original-attrs="{&quot;data-original-href&quot;:&quot;https://www.nbcnews.com/mach/science/what-vr-devices-apps-turn-real-world-virtual-ncna857001&quot;,&quot;target&quot;:&quot;_blank&quot;}" href="https://www.blogger.com/blog/post/edit/718738635050331014/5466747577950566946?hl=zh-TW#">What is VR? nbcnews</a></span></td>
 </tr>
 </tbody>
 </table>
-<br>也就是說，我要在剩下10天的時間，把別人一學期的東西搞懂，趕出一個完整性高的期末Project...
-<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">繼續擠壓睡眠時間，高度壓力讓我沒什麼睡覺仍精神抖擻，每天Google到很絕望，也逐漸拼湊出頭盔、搖桿運行原理。五天後，把處理VR遇到的疑難雜症排解完了，腦袋有辦法勾勒出完成的實作程序，鬆了一口氣。</p>
-<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">一樣通宵後的早晨，把成果push的Github*上準備前往台北測試，當我如往常的git add/commit後，git外掛large file system(LFS)因為沒有設定好，把很多檔案內容永久性的改成不相關的東西（詳細問題原因參考這裡：<a data-original-attrs="{&quot;data-original-href&quot;:&quot;https://github.com/git-lfs/git-lfs/issues/3128&quot;}" href="https://www.blogger.com/blog/post/edit/718738635050331014/5466747577950566946?hl=zh-TW#">all pointer file</a>）。這個外掛是Unity使用git才第一次接觸，我也不熟，只是照網路上的教學使用。簡單來說，檔案永久性刪除了，<strong>五天的心血，無數的通宵時間，付之一炬。</strong>人生從來沒有如此的絕望。</p>
-<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">整個人失魂落魄地前往台北，所有的難題要再重新面對一次，五天的時間要壓縮到更極致的兩天，早上8點在辦公室研究到晚上11點，正逢雙十連假，要在台北找過夜的旅館又貴又難，在十一點半花了2000訂了青旅，抵達現場門口寫著十一點後不再受理入住，什麼爛系統！此時只覺得人生爛到想發笑，在街頭無助的晃啊晃，總算在凌晨一點找到住宿。</p>
-<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">兩天後，也是當兵的前一天，仍然是通宵後前往台北，我搭七點多停靠站較多的高鐵，可以睡比較久，壓力終究使人無法入眠，最後一天，最後的調整，總算做出是可以上得了檯面的作品，在下午一點確認專案大致完成，可以收工了！</p>
-<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}"> </p>
-<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">趕緊再搭火車回家，回到彰化下午三點多，終於能和住國外難得回家的哥哥玩耍，拖著疲勞的身體直接去和哥哥打網球，這兩小時，我感受到我的血糖好低，快暈倒了，但這可是兄弟難得的相處時光呀！</p>
-<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">晚餐吃了頓大餐，晚上9:30趕快去剪光頭為今天當兵準備。摸摸頭，哇，馬上就可以進去軍中好好休息，心中滿是喜悅。</p>
-</div>
-<div><br>*Github：可以想成很厲害的儲存程式碼的雲端硬碟系統。</div>
-<div> </div>
-<div>寫於10/12</div>
-<div>修改於10/29</div>
-</div>
+<p>也就是說，我要在剩下10天的時間，把別人一學期的東西搞懂，趕出一個完整性高的期末Project...</p>
+<p>繼續擠壓睡眠時間，高度壓力讓我沒什麼睡覺仍精神抖擻，每天Google到很絕望，也逐漸拼湊出頭盔、搖桿運行原理。五天後，把處理VR遇到的疑難雜症排解完了，腦袋有辦法勾勒出完成的實作程序，鬆了一口氣。</p>
+<p>一樣通宵後的早晨，把成果push的Github*上準備前往台北測試，當我如往常的git add/commit後，git外掛large file system(LFS)因為沒有設定好，把很多檔案內容永久性的改成不相關的東西（詳細問題原因參考這裡：all pointer file）。這個外掛是Unity使用git才第一次接觸，我也不熟，只是照網路上的教學使用。簡單來說，檔案永久性刪除了，五天的心血，無數的通宵時間，付之一炬。人生從來沒有如此的絕望。</p>
+<p>整個人失魂落魄地前往台北，所有的難題要再重新面對一次，五天的時間要壓縮到更極致的兩天，早上8點在辦公室研究到晚上11點，正逢雙十連假，要在台北找過夜的旅館又貴又難，在十一點半花了2000訂了青旅，抵達現場門口寫著十一點後不再受理入住，什麼爛系統！此時只覺得人生爛到想發笑，在街頭無助的晃啊晃，總算在凌晨一點找到住宿。</p>
+<p>兩天後，也是當兵的前一天，仍然是通宵後前往台北，我搭七點多停靠站較多的高鐵，可以睡比較久，壓力終究使人無法入眠，最後一天，最後的調整，總算做出是可以上得了檯面的作品，在下午一點確認專案大致完成，可以收工了！</p>
+<p>趕緊再搭火車回家，回到彰化下午三點多，終於能和住國外難得回家的哥哥玩耍，拖著疲勞的身體直接去和哥哥打網球，這兩小時，我感受到我的血糖好低，快暈倒了，但這可是兄弟難得的相處時光呀！</p>
+<p>晚餐吃了頓大餐，晚上9:30趕快去剪光頭為今天當兵準備。摸摸頭，哇，馬上就可以進去軍中好好休息，心中滿是喜悅。</p>
+<p> </p>
+<p>*Github：可以想成很厲害的儲存程式碼的雲端硬碟系統。</p>
+<p>寫於10/12</p>
+<p>修改於10/29</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>台北理髮</title>
+        <author>
+            <name>Rémi</name>
+        </author>
+        <link href="https://rryh-tw.github.io/gh-pages/tai-bei-li-fa.html"/>
+        <id>https://rryh-tw.github.io/gh-pages/tai-bei-li-fa.html</id>
+
+        <updated>2024-02-22T02:07:02+08:00</updated>
+            <summary>
+                <![CDATA[
+                    <p>這陣子頭髮留很長，一直想著隨時會收到兵單，若剪頭髮，不久後又要剃光，很沒必要，沒想到這樣一想頭髮已變很長。</p>
+<p>雖然兩個禮拜後就要入伍，但今天老哥要回國，決定還是剪個帥的。第一次在台北剪頭髮，走進一間google評價很高的理髮廳，老闆看到我說：「你是不是昨天也有來？」</p>
+
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>這陣子頭髮留很長，一直想著隨時會收到兵單，若剪頭髮，不久後又要剃光，很沒必要，沒想到這樣一想頭髮已變很長。</p>
+<p>雖然兩個禮拜後就要入伍，但今天老哥要回國，決定還是剪個帥的。第一次在台北剪頭髮，走進一間google評價很高的理髮廳，老闆看到我說：「你是不是昨天也有來？」</p>
+
+<p>「對...」「我們現在也要打烊了，等一下有事，不好意思。」</p>
+<p>於是就去另一家稍早路過的店。走進店裡和櫃檯的年輕小子尷尬的對看幾秒後。「你們還有營業嗎？」我先開口，今天是中秋節，那時約下午4點半。習慣家鄉的百元剪髮，第一次走進看起來很不平價的理髮廳，「請問有指定的設計師嗎？」「你看起來大概四個月沒剪頭髮了」「頭髮長度若不確定我先幫你剪一個型，如果想修再幫你修短。」</p>
+<p>理髮師看起來不到三十，我回了很多的「嗯」，有點小緊張不太會講話。過程中沒有戴眼鏡，理髮師看起來倒是很俐落，同個地方不會修很久，過程中我們沒有太多的談話。接著是重頭戲：洗頭。</p>
+<p>理髮師說我沒什麼頭皮屑所以用去油的洗髮精就好，「嗯」，上洗髮精，理髮師開始幫我清洗頭部，怎麼按的這麼舒服，心想著拜託按久一點，然而洗髮精佈滿頭部盡情戳揉的時間也是過得很快，我小失落的接受這一切，沒想到沖完頭髮後是第二波，我再也不確定究竟是洗髮精還是護髮潤髮，被按壓頭部的痛快感得以延續下去，理髮師的手還真有勁，壓遍頭部的每一塊肌膚，接著還有熱敷環節，用熱毛巾蓋著額頭與眼睛，無比的放鬆，最後是第三波的洗頭，只能確定那香味又換了一種，始終不敢開口問頭髮現在正產生什麼樣的化學變化。</p>
+<p>整個理髮洗頭套餐799，和我在柏林理髮的價格差不多，我對理髮師有顧及到側面的觀感很滿意，「髮鬢幫你修一下，這樣比較有精神。」不管是不是話術，整個流程讓人很放鬆雀躍，特別是頭部按摩好爽快。等當完兵長完頭髮後再來好好享受一次。</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>SketchUp to Unity大模型轉移</title>
+        <author>
+            <name>Rémi</name>
+        </author>
+        <link href="https://rryh-tw.github.io/gh-pages/sketchup-to-unityda-mo-xing-zhuan-yi.html"/>
+        <id>https://rryh-tw.github.io/gh-pages/sketchup-to-unityda-mo-xing-zhuan-yi.html</id>
+
+        <updated>2024-02-22T02:06:57+08:00</updated>
+            <summary>
+                <![CDATA[
+                    這次做了一個專案，需要將模型師在SketchUp做的模型轉到Unity。 參考了網路上的影片，只需要將SketchUp的檔案export成.fbx for Unity的檔案類型就行了。 實際操作遇到一個很大的問題，導入Unity的模型當到無法操作。&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>這次做了一個專案，需要將模型師在SketchUp做的模型轉到Unity。</p>
+<p>參考了網路上的影片，只需要將SketchUp的檔案export成.fbx for Unity的檔案類型就行了。</p>
+<p>實際操作遇到一個很大的問題，導入Unity的模型當到無法操作。</p>
+<p>一開始以為是筆電效能太差，但換成桌機後，效果還是非常差勁。進一步研究後，發現是因為直接導入會把每個小零件的mesh分別讀進來，導致有上萬個mesh，Unity每幀要處理這麼多物件會炸掉。</p>
+<p>因此就到了本次問題處理的核心：如何將這些mesh合成一個，同時保留Texture和Material。也就是說把上萬個零件組成一個，讓Unity不會炸掉，反正這些場景不會有物件重組的需求。</p>
+<h4>方法一（失敗）：</h4>
+<p>搜尋關鍵字是「SketchUp Blender Unity」，會顯示這個</p>
+<p><a href="https://youtu.be/kQAjpnToj5s?si=Iftw4L4T62lHZo8K" target="null">Optimize Sketchup Files for Unreal Engine or Unity 3D using Blender</a></p>
+<p>做法大致上是將SketchUp導入Blender，把所有Texture壓成2D圖，再把Mesh和Texture圖丟到Unity。</p>
+<p>SketchUp導入Blender不難，試了很多種檔案種類，fbx, dae, obj看起來是很好的選擇。</p>
+<ul>
+<li>fbx可能會有問題，inport到Blender會顯示"ASCII FBX files are not supported"，要轉檔之類的。</li>
+<li>dae檔是最不失真的轉法，所有點線面都會完整被轉過來。</li>
+<li>obj轉過來則是完整一個object。</li>
+</ul>
+<p>在壓Texture遇到了比較大的困難，首先要先把整個建築物的表皮投影到一個2D圖上，這個步驟叫做UV mapping，作法和影片上的大同小異。接著要把Texture印到mapping對應到的地方，這個步驟叫做Bake。</p>
+<p>影片的方法行不通，最後找了很多相關影片才摸熟他的手法，假設最終的成果圖是Bake.png，要在shader editer(應該就是Unity Texture的意思)的每一個Texture加上一個Node如下圖，並且還要選起來：</p>
+<figure class="post__image post__image--center"><img loading="lazy"  src="https://rryh-tw.github.io/gh-pages/media/posts/6/Jie-Tu-2024-02-22-Ling-Chen-1.59.39.png" alt="" width="626" height="442" sizes="100vw" srcset="https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-1.59.39-xs.png 300w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-1.59.39-sm.png 480w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-1.59.39-md.png 768w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-1.59.39-lg.png 1024w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-1.59.39-xl.png 1360w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-1.59.39-2xl.png 1600w"></figure>
+<p class="align-left"><span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">這個Project總共有214個Material，最後想到使用自動點擊器幫我完成這個步驟，也花了好一段時間。</span></p>
+<figure class="post__image post__image--center"><img loading="lazy"  src="https://rryh-tw.github.io/gh-pages/media/posts/6/Jie-Tu-2024-02-22-Ling-Chen-2.00.41.png" alt="" width="230" height="606" sizes="100vw" srcset="https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-2.00.41-xs.png 300w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-2.00.41-sm.png 480w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-2.00.41-md.png 768w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-2.00.41-lg.png 1024w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-2.00.41-xl.png 1360w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-2.00.41-2xl.png 1600w"></figure>
+<p>接著要在Render的Render Engine改成Cycle，Bake Type改成Diffuse，開始Bake就能得到一張Texture 2D圖。</p>
+<p class="align-left">雖然最後有Bake成功，但不知道是不是因為模型太大，UV mapping到一張圖全擠在一起，拉到Unity裡Texture貼上去效果很差，建築物全變為七彩的樣子，最後搞了整整兩天以失敗告終。</p>
+<h4>方法二（失敗）：</h4>
+<p><a href="https://youtube.com/shorts/ufAjkzQ3v9U?si=gvT8THXQo6xUSCBE" target="_blank" rel="noopener noreferrer">Merging many objects into one object in Unity</a></p>
+<p>這次換找看看能不能在Unity直接Merge大量的Mesh，還真的有。</p>
+<p>這個方法是使用Unity的Package probuilder，最後不知道是不是因為Mesh太大量，或是有很多層的Group，也是不成功。</p>
+<h4>方法三（成功）：</h4>
+<p>最後又換了一個想法，假設我成功的將SketchUp轉換到Blender了，那我只要學會把Blender的東西轉到Unity就好了。</p>
+<p><a href="https://youtu.be/5UZ-niuRWz8?si=5H3DnuzVh-GG-KeM" target="_blank" rel="noopener noreferrer">How To Export From Blender to Unity 2020</a></p>
+<p>結果方法超簡單，只要將SketchUp輸出成obj，用Blender匯入，再直接從Blender匯出fbx，把這個fbx和第一次從SketchUp輸出的Texture資料夾一起丟到Unity就行了。</p>
+<p>成功的關鍵在於在前面試的過程中有注意到，這樣import到Blender會自動變成一個大Mesh。一開始沒有這樣想是因為覺得一個Mesh就必須對應到一個Texture，看了這個影片後發現不用耶。</p>
+<p>不過轉移的過程中仍然有一些Texture會跑掉，感覺要在Blender那邊自己調整，這部分就不再繼續研究了。</p>
+<p>特別感謝幫助我的各路朋友。</p>
             ]]>
         </content>
     </entry>
