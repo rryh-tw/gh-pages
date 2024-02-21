@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+    <title>Rémi的部落格</title>
+    <link href="https://rryh-tw.github.io/gh-pages/feed.xml" rel="self" />
+    <link href="https://rryh-tw.github.io/gh-pages" />
+    <updated>2024-02-22T00:15:14+08:00</updated>
+    <author>
+        <name>Rémi</name>
+    </author>
+    <id>https://rryh-tw.github.io/gh-pages</id>
+
+    <entry>
+        <title>當兵前傳 - 畢業了然後呢</title>
+        <author>
+            <name>Rémi</name>
+        </author>
+        <link href="https://rryh-tw.github.io/gh-pages/dang-bing-qian-chuan-bi-ye-liao-ran-hou-ni.html"/>
+        <id>https://rryh-tw.github.io/gh-pages/dang-bing-qian-chuan-bi-ye-liao-ran-hou-ni.html</id>
+
+        <updated>2024-02-22T00:15:14+08:00</updated>
+            <summary>
+                <![CDATA[
+                    現在是10/12凌晨2:00，再六小時後就要當兵... 6月中旬考完最後一次的期末考，十七年的學生生涯在此按下暫停，終於可以好好放鬆，把課業拋到九霄雲外。 帶著輕鬆愉快的心情，條列畢業後的待辦事項： 這漫長的旅程始於去年初，專題教授提議將研究成果寫成論文。 我的研究領域是手勢辨識，透過數學運算，分類出即時影像的人體手勢。老實說我覺得我的方法完全沒有發表價值，整個方法很一般般，但基於想試試看寫出一篇論文，還是接下了挑戰。 原本預計去年底完成，課業壓力讓我根本沒什麼進展。年初又找了另一個投稿目標，仍未能準時完成。畢業後終於有時間好好重新檢視，把程式碼寫好，實驗做好，總算找到這篇論文的價值與完成動力。教授聽完報告大半夜興沖沖的找到合適的演討會，再一次擬好投稿時間，兩個月後完成。衝刺一下，開會時間也改為一個禮拜兩次（畢業了教授還是很照顧我）。 一切還算順利，直到要統整最後的實驗數據，我發現我想出的方法很多缺失，數據結過證明就是個爛方法。我不斷的想辦法優化、想解方。程式碼越寫越亂，於是不斷地重寫，加功能，再重寫，再加功能。開會前不斷的熬夜，最終成功的錯過教授理想中的第三次投稿時間...... 繼續的開會與修改，將實驗方法確認、簡化，要當兵了，只好「不情願的」交接給學妹做最後收尾。 畢業後少了課業壓力，以為閒了下來，接了一個工讀機會，工作內容聽一聽只是將建模師的3D模型匯入Unity，再加一些功能就行了，雖然沒有碰過Unity，但作為寫程式的人，應該都有自己寫出遊戲的衝動。評估一下時間和能力，這應該會是有趣的休閒小專案。 此專案的目標是10月中旬的展覽，9月中是我真正的開工時間，一開始就遇到疑難雜症（參閱SketchUp to Unity大模型轉移），緊張了三天連第一步都做不出來，這時收到了兵單，又驚又喜，火上加油，四週的趕工時間硬生生再少了三分之一，嚴格來說，我要在15天內生出一個完整遊戲出來。沒有懷疑人生的時間，五天的摸索，有了個雛形，沒有通宵做不出來的事！ 再進一步的討論展覽方式，決定要使用VR設備讓參觀者互動。 大事不妙，3D遊戲轉VR基本上是重做的概念。VR算是遊戲中的一個大主題，全名為虛擬實境（Virtual Reality），需要戴VR眼鏡，遊戲搖桿操作，我甚至自己也從來沒玩過。VR遊戲開發尚未到很熱門，網路上的資源不多，這意味著遇到問題較難找出解方，幸好朋友傳了一份大學修課簡報讓我參考。 繼續擠壓睡眠時間，高度壓力讓我沒什麼睡覺仍精神抖擻，每天Google到很絕望，也逐漸拼湊出頭盔、搖桿運行原理。五天後，把處理VR遇到的疑難雜症排解完了，腦袋有辦法勾勒出完成的實作程序，鬆了一口氣。 一樣通宵後的早晨，把成果push的Github*上準備前往台北測試，當我如往常的git add/commit後，git外掛large file system(LFS)因為沒有設定好，把很多檔案內容永久性的改成不相關的東西（詳細問題原因參考這裡：all pointer file）。這個外掛是Unity使用git才第一次接觸，我也不熟，只是照網路上的教學使用。簡單來說，檔案永久性刪除了，五天的心血，無數的通宵時間，付之一炬。人生從來沒有如此的絕望。 整個人失魂落魄地前往台北，所有的難題要再重新面對一次，五天的時間要壓縮到更極致的兩天，早上8點在辦公室研究到晚上11點，正逢雙十連假，要在台北找過夜的旅館又貴又難，在十一點半花了2000訂了青旅，抵達現場門口寫著十一點後不再受理入住，什麼爛系統！此時只覺得人生爛到想發笑，在街頭無助的晃啊晃，總算在凌晨一點找到住宿。 兩天後，也是當兵的前一天，仍然是通宵後前往台北，我搭七點多停靠站較多的高鐵，可以睡比較久，壓力終究使人無法入眠，最後一天，最後的調整，總算做出是可以上得了檯面的作品，在下午一點確認專案大致完成，可以收工了！ 趕緊再搭火車回家，回到彰化下午三點多，終於能和住國外難得回家的哥哥玩耍，拖著疲勞的身體直接去和哥哥打網球，這兩小時，我感受到我的血糖好低，快暈倒了，但這可是兄弟難得的相處時光呀！ 晚餐吃了頓大餐，晚上9:30趕快去剪光頭為今天當兵準備。摸摸頭，哇，馬上就可以進去軍中好好休息，心中滿是喜悅。 *Github：可以想成很厲害的儲存程式碼的雲端硬碟系統。 寫於10/12 修改於10/29
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p data-original-attrs="{&quot;style&quot;:&quot;&quot;}"><span data-keep-original-tag="false" data-original-attrs="{&quot;face&quot;:&quot;-webkit-standard, serif&quot;}">現在是10/12凌晨2:00，再六小時後就要當兵...</span></p>
+<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}"><span data-keep-original-tag="false" data-original-attrs="{&quot;face&quot;:&quot;-webkit-standard, serif&quot;}">6月中旬考完最後一次的期末考，十七年的學生生涯在此按下暫停，終於可以好好放鬆，把課業拋到九霄雲外。</span></p>
+<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}"><span data-keep-original-tag="false" data-original-attrs="{&quot;face&quot;:&quot;-webkit-standard, serif&quot;}">帶著輕鬆愉快的心情，條列畢業後的待辦事項：</span></p>
+<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}"> </p>
+<ol data-original-attrs="{&quot;style&quot;:&quot;&quot;}">
+<li><span data-keep-original-tag="false" data-original-attrs="{&quot;face&quot;:&quot;-webkit-standard, serif&quot;}">完成論文</span></li>
+<li><span data-keep-original-tag="false" data-original-attrs="{&quot;face&quot;:&quot;-webkit-standard, serif&quot;}">NCU APP上架</span></li>
+<li><span data-keep-original-tag="false" data-original-attrs="{&quot;face&quot;:&quot;-webkit-standard, serif&quot;}">APCS暑期課程講課</span></li>
+<li><span data-keep-original-tag="false" data-original-attrs="{&quot;face&quot;:&quot;-webkit-standard, serif&quot;}">德文檢定準備</span></li>
+<li>Unity工讀專案</li>
+</ol>
+<div>嗯…真不對勁，接著和大家細數這些事，如何耗盡我當兵前的時間與精力。</div>
+<div> </div>
+<h2 data-original-attrs="{&quot;style&quot;:&quot;&quot;}">論文 - 是助力，還是絆腳石？</h2>
+<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">這漫長的旅程始於去年初，專題教授提議將研究成果寫成論文。</p>
+<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">我的研究領域是手勢辨識，透過數學運算，分類出即時影像的人體手勢。老實說我覺得我的方法完全沒有發表價值，整個方法很一般般，但基於想試試看寫出一篇論文，還是接下了挑戰。</p>
+<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">原本預計去年底完成，課業壓力讓我根本沒什麼進展。年初又找了另一個投稿目標，仍未能準時完成。畢業後終於有時間好好重新檢視，把程式碼寫好，實驗做好，總算找到這篇論文的價值與完成動力。教授聽完報告大半夜興沖沖的找到合適的演討會，再一次擬好投稿時間，兩個月後完成。衝刺一下，開會時間也改為一個禮拜兩次（畢業了教授還是很照顧我）。</p>
+<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">一切還算順利，直到要統整最後的實驗數據，我發現我想出的方法很多缺失，數據結過證明就是個爛方法。我不斷的想辦法優化、想解方。程式碼越寫越亂，於是不斷地重寫，加功能，再重寫，再加功能。開會前不斷的熬夜，最終成功的錯過教授理想中的第三次投稿時間......</p>
+<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">繼續的開會與修改，將實驗方法確認、簡化，要當兵了，只好「不情願的」交接給學妹做最後收尾。</p>
+<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}"> </p>
+<div>
+<h2 data-original-attrs="{&quot;style&quot;:&quot;&quot;}">NCU APP 上架 - 歷經了三年，只好再n年。</h2>
+NCU APP是大一下同學揪一揪自發性想做的專案，目的是想讓中央大學學生有個好用工具，在大學生活更方便。</div>
+<div>我們每年招募成員、培訓、開發，到了大四卻未有實質成果，令我覺得很可惜。大四時，我決定接手處理這看似要石沈大海的專案。一年下來完成度不錯。畢業後不斷的微調、優化，花了幾天研究上架方法，到後來演變為沒空處理放到一邊。很慶幸交接的下一屆負責人很用心，目前快要可以開放大家使用了。</div>
+<div>
+<div class="separator" data-original-attrs="{&quot;style&quot;:&quot;&quot;}"><a data-original-attrs="{&quot;data-original-href&quot;:&quot;https://blogger.googleusercontent.com/img/a/AVvXsEg5d93XurwuQq-mgxnK_1FCvpWWtDZLzjE9MijDsMfNEIF--x5L1ZvuYwCJNtxnIT7qusorXju-xttzZxt2rVoa5UcRObo2IEbLDaOlU55mRaiVPL6S4nYhXPTzWIf9wb0Qrrhxr0KeYbvZn9WFV0-9lyiS8CxqXd5ZMlfkFIwNelbU1e-ijKQ0SkC6fyQ&quot;,&quot;style&quot;:&quot;&quot;}" href="https://www.blogger.com/blog/post/edit/718738635050331014/5466747577950566946?hl=zh-TW#"><img loading="lazy" src="https://blogger.googleusercontent.com/img/a/AVvXsEg5d93XurwuQq-mgxnK_1FCvpWWtDZLzjE9MijDsMfNEIF--x5L1ZvuYwCJNtxnIT7qusorXju-xttzZxt2rVoa5UcRObo2IEbLDaOlU55mRaiVPL6S4nYhXPTzWIf9wb0Qrrhxr0KeYbvZn9WFV0-9lyiS8CxqXd5ZMlfkFIwNelbU1e-ijKQ0SkC6fyQ" alt="" width="320" height="118" data-original-height="266" data-original-width="724" data-is-external-image="true"></a></div>
+<h3 data-original-attrs="{&quot;style&quot;:&quot;&quot;}"> </h3>
+<h2 data-original-attrs="{&quot;style&quot;:&quot;&quot;}">APCS暑期課程講課 - 當老師真的好難</h2>
+畢業後的另一件事是擔任APCS講師，大四下帶了台北高中的APCS課程，不甘心過了一個學期只教授基礎，有點空虛。我決定利用暑假，學生有較少的課業壓力的時間，傳授畢生所學，至少要教到讓他們有日後成為選手的能力，能夠輕鬆自學，當國手。為期五週的課程總算把遞迴講完，二分搜、動態規劃、圖論草草帶過，進度仍與期望有落差。<br>教了這幾次課，教書的方法與手段仍然很差勁，如何有趣的引導，讓大家輕易的吸收知識，如何講話更清楚，如何和學生混成朋友，我實在摸不透。
+<h3 data-original-attrs="{&quot;style&quot;:&quot;&quot;}"> </h3>
+<h2 data-original-attrs="{&quot;style&quot;:&quot;&quot;}">德文檢定準備 - 就只會嘴巴說說</h2>
+畢業後，我預計出國讀研究所，但事情接踵而來，忙到根本沒時間和興致準備語言檢定，所以這部分只能嘆氣。
+<h3 data-original-attrs="{&quot;style&quot;:&quot;&quot;}"> </h3>
+<h2 data-original-attrs="{&quot;style&quot;:&quot;&quot;}">Unity工讀專案 - 已經窒息</h2>
+<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">畢業後少了課業壓力，以為閒了下來，接了一個工讀機會，工作內容聽一聽只是將建模師的3D模型匯入Unity，再加一些功能就行了，雖然沒有碰過Unity，但作為寫程式的人，應該都有自己寫出遊戲的衝動。評估一下時間和能力，這應該會是有趣的休閒小專案。</p>
+<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">此專案的目標是10月中旬的展覽，9月中是我真正的開工時間，一開始就遇到疑難雜症（參閱<a data-original-attrs="{&quot;data-original-href&quot;:&quot;https://royyaha.blogspot.com/2023/09/sketchup-to-unity.html&quot;,&quot;target&quot;:&quot;_blank&quot;}" href="https://www.blogger.com/blog/post/edit/718738635050331014/5466747577950566946?hl=zh-TW#">SketchUp to Unity大模型轉移</a>），緊張了三天連第一步都做不出來，這時收到了兵單，又驚又喜，火上加油，四週的趕工時間硬生生再少了三分之一，嚴格來說，<strong>我要在15天內生出一個完整遊戲出來</strong>。沒有懷疑人生的時間，五天的摸索，有了個雛形，沒有通宵做不出來的事！</p>
+<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">再進一步的討論展覽方式，決定要使用VR設備讓參觀者互動。<br>大事不妙，3D遊戲轉VR基本上是重做的概念。VR算是遊戲中的一個大主題，全名為虛擬實境（Virtual Reality），需要戴VR眼鏡，遊戲搖桿操作，我甚至自己也從來沒玩過。VR遊戲開發尚未到很熱門，網路上的資源不多，這意味著遇到問題較難找出解方，幸好朋友傳了一份大學修課簡報讓我參考。</p>
+<div>
+<table class="tr-caption-container" cellspacing="0" cellpadding="0" align="center" data-original-attrs="{&quot;style&quot;:&quot;&quot;}">
+<tbody>
+<tr>
+<td data-original-attrs="{&quot;style&quot;:&quot;&quot;}"><a data-original-attrs="{&quot;data-original-href&quot;:&quot;https://blogger.googleusercontent.com/img/a/AVvXsEg7FMvfzTx2VPsdWuZ9jUGxV_RzZUogt8UlAshLLKkv8CRpLNdlinPXvpq7q2VXYIGDgrYEnwrSn6LHHzbLHLWRO0jHNHb0W64JhdNc66968-90H84uSFmOjKy17YuhckeeFaYe4YhCS9tOwrvA896VgDyp_9ybMCY30EBar97MPjYoVrAXftlMQdi9e_U&quot;,&quot;style&quot;:&quot;&quot;}" href="https://www.blogger.com/blog/post/edit/718738635050331014/5466747577950566946?hl=zh-TW#"><img loading="lazy" src="https://blogger.googleusercontent.com/img/a/AVvXsEg7FMvfzTx2VPsdWuZ9jUGxV_RzZUogt8UlAshLLKkv8CRpLNdlinPXvpq7q2VXYIGDgrYEnwrSn6LHHzbLHLWRO0jHNHb0W64JhdNc66968-90H84uSFmOjKy17YuhckeeFaYe4YhCS9tOwrvA896VgDyp_9ybMCY30EBar97MPjYoVrAXftlMQdi9e_U" alt="" width="302" height="240" data-original-height="603" data-original-width="760" data-is-external-image="true"></a></td>
+</tr>
+<tr>
+<td class="tr-caption" data-original-attrs="{&quot;style&quot;:&quot;&quot;}">source: <span data-keep-original-tag="false" data-original-attrs="{&quot;style&quot;:&quot;font-size: var(--article-hero-headline--htag--font-size);&quot;,&quot;face&quot;:&quot;var(--article-hero-headline--htag--font-family)&quot;}"><a data-original-attrs="{&quot;data-original-href&quot;:&quot;https://www.nbcnews.com/mach/science/what-vr-devices-apps-turn-real-world-virtual-ncna857001&quot;,&quot;target&quot;:&quot;_blank&quot;}" href="https://www.blogger.com/blog/post/edit/718738635050331014/5466747577950566946?hl=zh-TW#">What is VR? nbcnews</a></span></td>
+</tr>
+</tbody>
+</table>
+<br>也就是說，我要在剩下10天的時間，把別人一學期的東西搞懂，趕出一個完整性高的期末Project...
+<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">繼續擠壓睡眠時間，高度壓力讓我沒什麼睡覺仍精神抖擻，每天Google到很絕望，也逐漸拼湊出頭盔、搖桿運行原理。五天後，把處理VR遇到的疑難雜症排解完了，腦袋有辦法勾勒出完成的實作程序，鬆了一口氣。</p>
+<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">一樣通宵後的早晨，把成果push的Github*上準備前往台北測試，當我如往常的git add/commit後，git外掛large file system(LFS)因為沒有設定好，把很多檔案內容永久性的改成不相關的東西（詳細問題原因參考這裡：<a data-original-attrs="{&quot;data-original-href&quot;:&quot;https://github.com/git-lfs/git-lfs/issues/3128&quot;}" href="https://www.blogger.com/blog/post/edit/718738635050331014/5466747577950566946?hl=zh-TW#">all pointer file</a>）。這個外掛是Unity使用git才第一次接觸，我也不熟，只是照網路上的教學使用。簡單來說，檔案永久性刪除了，<strong>五天的心血，無數的通宵時間，付之一炬。</strong>人生從來沒有如此的絕望。</p>
+<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">整個人失魂落魄地前往台北，所有的難題要再重新面對一次，五天的時間要壓縮到更極致的兩天，早上8點在辦公室研究到晚上11點，正逢雙十連假，要在台北找過夜的旅館又貴又難，在十一點半花了2000訂了青旅，抵達現場門口寫著十一點後不再受理入住，什麼爛系統！此時只覺得人生爛到想發笑，在街頭無助的晃啊晃，總算在凌晨一點找到住宿。</p>
+<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">兩天後，也是當兵的前一天，仍然是通宵後前往台北，我搭七點多停靠站較多的高鐵，可以睡比較久，壓力終究使人無法入眠，最後一天，最後的調整，總算做出是可以上得了檯面的作品，在下午一點確認專案大致完成，可以收工了！</p>
+<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}"> </p>
+<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">趕緊再搭火車回家，回到彰化下午三點多，終於能和住國外難得回家的哥哥玩耍，拖著疲勞的身體直接去和哥哥打網球，這兩小時，我感受到我的血糖好低，快暈倒了，但這可是兄弟難得的相處時光呀！</p>
+<p data-original-attrs="{&quot;style&quot;:&quot;&quot;}">晚餐吃了頓大餐，晚上9:30趕快去剪光頭為今天當兵準備。摸摸頭，哇，馬上就可以進去軍中好好休息，心中滿是喜悅。</p>
+</div>
+<div><br>*Github：可以想成很厲害的儲存程式碼的雲端硬碟系統。</div>
+<div> </div>
+<div>寫於10/12</div>
+<div>修改於10/29</div>
+</div>
+            ]]>
+        </content>
+    </entry>
+</feed>
