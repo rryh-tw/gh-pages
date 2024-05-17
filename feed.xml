@@ -3,12 +3,284 @@
     <title>Rémi的部落格</title>
     <link href="https://rryh-tw.github.io/gh-pages/feed.xml" rel="self" />
     <link href="https://rryh-tw.github.io/gh-pages" />
-    <updated>2024-04-11T15:45:38+08:00</updated>
+    <updated>2024-05-17T16:28:24+08:00</updated>
     <author>
         <name>Rémi</name>
     </author>
     <id>https://rryh-tw.github.io/gh-pages</id>
 
+    <entry>
+        <title>rvalue/move</title>
+        <author>
+            <name>Rémi</name>
+        </author>
+        <link href="https://rryh-tw.github.io/gh-pages/rvaluemove.html"/>
+        <id>https://rryh-tw.github.io/gh-pages/rvaluemove.html</id>
+            <category term="C++語法"/>
+
+        <updated>2024-05-17T16:28:24+08:00</updated>
+            <summary>
+                <![CDATA[
+                    這個概念十分難懂，目前大概7成懂。 include &lt;iostream&gt; #include &lt;string&gt; using namespace std; int main() { string s1 = "abc"; string s2 = s1; // 複製 s1 的資料 cout &lt;&lt; s1 &lt;&lt; endl; // 顯示 "abc" cout &lt;&lt; s2 &lt;&lt; endl; // 顯示 "abc" } 假設一個情境，s1把值給s2後，s1再也不會用到，這時候將s1複製給s2就很沒必要。 當賦予值使用的是不再被需要的（暫時）物件，你可以「偷」其內容或其資源。 #include &lt;iostream&gt; #include&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>這個概念十分難懂，目前大概7成懂。</p>
+<pre class="language-cpp"><code>include &lt;iostream&gt; 
+#include &lt;string&gt;
+using namespace std; 
+
+int main() { 
+    string s1 = "abc";
+    string s2 = s1;     //  複製 s1 的資料
+
+    cout &lt;&lt; s1 &lt;&lt; endl; // 顯示 "abc"
+    cout &lt;&lt; s2 &lt;&lt; endl; // 顯示 "abc"
+} </code></pre>
+<p>假設一個情境，s1把值給s2後，s1再也不會用到，這時候將s1複製給s2就很沒必要。</p>
+<p>當賦予值使用的是不再被需要的（暫時）物件，你可以「偷」其內容或其資源。</p>
+<pre class="language-cpp"><code>#include &lt;iostream&gt; 
+#include &lt;string&gt;
+#include &lt;utility&gt;
+
+using namespace std; 
+
+int main() { 
+    string s1 = "abc";
+    string s2 = std::move(s1);    //  轉移 s1 的資料
+
+    // cout &lt;&lt; s1 &lt;&lt; endl;        // 這時取值結果不可預期
+    cout &lt;&lt; s2 &lt;&lt; endl;           // 顯示 "abc"
+
+    s1 = "xyz";                   // OK
+    cout &lt;&lt; s1 &lt;&lt; endl;           // 這時可以取值
+} </code></pre>
+<p>可以想像string有定義好rvalue給值（move）的方法。</p>
+<pre class="language-cpp"><code>class string {
+public:
+    string&amp; operator= (const string&amp; lvalue);//copy assignment opr
+    string&amp; operator= (string &amp;&amp;rvalue);    //move assignment opr
+}</code></pre>
+<p>參考：https://openhome.cc/Gossip/CppGossip/RvalueReference.html</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>explicit</title>
+        <author>
+            <name>Rémi</name>
+        </author>
+        <link href="https://rryh-tw.github.io/gh-pages/explicit.html"/>
+        <id>https://rryh-tw.github.io/gh-pages/explicit.html</id>
+            <category term="C++語法"/>
+
+        <updated>2024-05-17T16:04:53+08:00</updated>
+            <summary>
+                <![CDATA[
+                    初始化class，不想用隱性轉換的給值方法，可以使用explicit來讓他不起作用。 implicit type conversion -&gt; 隱性轉換 class p { public: P(int a, int b) {} explicit P(int a, int b, int c) {} }; P x1(77, 5); // OK P x2{77, 5}; // OK P x3 = {77, 5}; // OK P y1(1, 2, 3);&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>初始化class，不想用隱性轉換的給值方法，可以使用explicit來讓他不起作用。</p>
+<p>implicit type conversion -&gt; 隱性轉換</p>
+<pre class="language-cpp"><code>class p
+{
+public:
+    P(int a, int b) {}
+    explicit P(int a, int b, int c) {}
+};
+
+P x1(77, 5);        // OK
+P x2{77, 5};        // OK
+P x3 = {77, 5};     // OK
+P y1(1, 2, 3);      // OK
+P y2{1, 2, 3};      // OK
+P y3 = {1, 2, 3};   // ERROR: due to explicit</code></pre>
+<p> </p>
+<p>參考：C++標準庫學習較本與參考工具 第二版</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>narrowing</title>
+        <author>
+            <name>Rémi</name>
+        </author>
+        <link href="https://rryh-tw.github.io/gh-pages/narrowing.html"/>
+        <id>https://rryh-tw.github.io/gh-pages/narrowing.html</id>
+            <category term="C++語法"/>
+
+        <updated>2024-05-17T15:59:37+08:00</updated>
+            <summary>
+                <![CDATA[
+                    C++有機制，可以判斷精度高轉為精度低的狀況。例如double轉int，避免數值變動。 判斷窄化（narrowing）會應用在一些場景，例如使用uniform initialization，大括號初始化時： error: narrowing conversion of '5.0e+0' from 'double' to 'long long int' [-Wnarrowing] 42 | int x{5.0}; int x1(5.3); // OK int x2 = 5.3; // OK int x3{5.0}; // ERROR int x4 = {5.0}; // ERROR char c1{7}; // OK: not narrowing
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>C++有機制，可以判斷精度高轉為精度低的狀況。例如double轉int，避免數值變動。</p>
+<p>判斷窄化（narrowing）會應用在一些場景，例如使用uniform initialization，大括號初始化時：</p>
+<pre class="language-cpp"><code>error: narrowing conversion of '5.0e+0' from 'double' to 'long long int' [-Wnarrowing]
+   42 |     int x{5.0};</code></pre>
+<pre class="language-cpp"><code>int x1(5.3);        // OK
+int x2 = 5.3;       // OK
+int x3{5.0};        // ERROR
+int x4 = {5.0};     // ERROR
+char c1{7};         // OK: not narrowing</code></pre>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>C++ Standards</title>
+        <author>
+            <name>Rémi</name>
+        </author>
+        <link href="https://rryh-tw.github.io/gh-pages/c-standards.html"/>
+        <id>https://rryh-tw.github.io/gh-pages/c-standards.html</id>
+            <category term="C++"/>
+
+        <updated>2024-05-17T15:46:29+08:00</updated>
+            <summary>
+                <![CDATA[
+                    標準由the International Organization for Standardization(ISO)制定。 參考：C++標準庫學習較本與參考工具 第二版
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>標準由the International Organization for Standardization(ISO)制定。</p>
+<ul>
+<li>C++98
+<ul>
+<li>官方名稱為「INformation Technology Programming Languages -- C++」</li>
+<li>ISO/IEC 14882:1998</li>
+<li>C++第一個標準</li>
+</ul>
+</li>
+<li>C++03
+<ul>
+<li>技術勘誤（technical corrigendum, "TC"）</li>
+<li>ISO/IEC 14882:2003</li>
+<li>修正C++98不嚴重的bug</li>
+</ul>
+</li>
+<li>TR1
+<ul>
+<li>ISO/IEC TR 19768:2007</li>
+<li>大幅度標準庫擴充，涵蓋在<code>namespace std::tr1</code>內。</li>
+</ul>
+</li>
+<li>C++ 11
+<ul>
+<li>第二份C++標準</li>
+<li>大幅度的改善（語言與標準庫）</li>
+<li>ISO/IEC 14882:2011</li>
+<li>發表前長時間被稱為C++0x，其實是一樣的東西。
+<ul>
+<li>取自某篇2009的貼文：「If C++0x comes out in 2010, it can just be called ... C++0x7DA.」，0x7DA是16進位的2010</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p> </p>
+<p>參考：C++標準庫學習較本與參考工具 第二版</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>好用的終端機指令</title>
+        <author>
+            <name>Rémi</name>
+        </author>
+        <link href="https://rryh-tw.github.io/gh-pages/hao-yong-de-zhong-duan-ji-zhi-ling-2.html"/>
+        <id>https://rryh-tw.github.io/gh-pages/hao-yong-de-zhong-duan-ji-zhi-ling-2.html</id>
+            <category term="shell"/>
+
+        <updated>2024-05-17T13:42:57+08:00</updated>
+            <summary>
+                <![CDATA[
+                    1. more 顯示太多，使用more指令會讓畫面滿一頁時暫停，按空白鍵繼續顯示下一畫面。 ls -al | more cat input.txt | more 2. grep 找到所有cpp檔裡，含有cin的內容。 grep cin *.cpp H.cpp: // int _T; cin &gt;&gt; _T; while(_T--) H2.cpp: cin &gt;&gt; n; H2.cpp: for(auto &amp;x:v) cin &gt;&gt; x; H_1.cpp:#define IOS cin.tie(nullptr)-&gt;sync_with_stdio(false); ls | grep A ls的結果，丟給grep塞選。 3. &amp;&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <h3>1. more</h3>
+<div>
+<div>顯示太多，使用more指令會讓畫面滿一頁時暫停，按空白鍵繼續顯示下一畫面。</div>
+</div>
+<div>
+<div><code>ls -al | more</code></div>
+<div>
+<div><code>cat input.txt | more</code><span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);"> </span></div>
+<div>
+<h3>2. grep</h3>
+<div>
+<div>
+<div>找到所有cpp檔裡，含有cin的內容。</div>
+</div>
+</div>
+<div>
+<div><code>grep cin *.cpp</code></div>
+<div>
+<pre class="language-bash"><code>H.cpp:    // int _T; cin &gt;&gt; _T; while(_T--)
+H2.cpp:    cin &gt;&gt; n;
+H2.cpp:    for(auto &amp;x:v) cin &gt;&gt; x;
+H_1.cpp:#define IOS cin.tie(nullptr)-&gt;sync_with_stdio(false);</code></pre>
+<div>
+<div><code>ls | grep A</code></div>
+<div>ls的結果，丟給grep塞選。</div>
+<div> </div>
+<h3>3. &amp;</h3>
+<div>可以讓run A指令在背景跑，繼續讓他跑輸入<code>fg</code>(foreground)</div>
+<div>
+<pre class="language-bash"><code>royyaha%run A &amp;
+[1] 45598</code></pre>
+<pre class="language-bash"><code>royyaha% jobs
+[1]+ Running run A &amp;</code></pre>
+<pre class="language-bash"><code>royyaha% fg
+[1]  + continued  run A</code></pre>
+<h3>4. echo $PATH</h3>
+<p>可以查看環境設定的目錄有哪些</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>Mathforces Round 940 </title>
+        <author>
+            <name>Rémi</name>
+        </author>
+        <link href="https://rryh-tw.github.io/gh-pages/sai-hou-jian-taomathforces-round-940.html"/>
+        <id>https://rryh-tw.github.io/gh-pages/sai-hou-jian-taomathforces-round-940.html</id>
+            <category term="賽後檢討"/>
+
+        <updated>2024-05-14T18:24:15+08:00</updated>
+            <summary>
+                <![CDATA[
+                    https://codeforces.com/contest/1957 這場很數學，記錄重點。 A 題目：給你n個邊長，問你用這些邊長可以組成幾個正多邊形。 確認題意花了一點時間，誤解成求幾種正多邊形。 B 題目：構造出n個數，這n個數總和為k，構造出這n個數or起來最大。 也是題意太模糊就開始寫，要求的是二進位有最多的1，而不是求最大值。 C 題目：n*n的西洋棋盤，你是白棋，電腦是黑棋。每一輪你會放一個車到棋盤上的(r, c)，電腦會跟著放到(c, r)上。如果電腦不能放就跳過。問放到不能放時的最終棋盤有幾種可能。 很容易觀察到看幾行空的，但方法數並不好想，最後繞了很久才有抓到想法。 令dp(i)為i*i格的方法數 針對(x, x)有沒有放東西 有的狀況-&gt; dp(i-1) 沒有的話，可以選擇在(x, ?), (?, x)放-&gt; dp(i-2)*(i-1)*2 dp問題要確認有沒有順序性的問題，先放後放有沒有影響。 D 題目：n個數的序列，定義f(l, r)為此區間的xor值，找出所有$f(l, r) \oplus a_i&gt;f(l, r), l&lt;=i&lt;=r$的區間數量。 不難想到方法，但寫法沒想清楚不好寫。 針對區間[l, r]，如果拿掉$a_i$數值變大，代表他的最高bit在區間中出現偶數次。
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p> </p>
+<p><a href="https://codeforces.com/contest/1957" target="_blank" rel="noopener noreferrer">https://codeforces.com/contest/1957</a></p>
+<p>這場很數學，記錄重點。</p>
+<p>A<br>題目：給你n個邊長，問你用這些邊長可以組成幾個正多邊形。<br>確認題意花了一點時間，誤解成求幾種正多邊形。</p>
+<p>B<br>題目：構造出n個數，這n個數總和為k，構造出這n個數or起來最大。<br>也是題意太模糊就開始寫，要求的是二進位有最多的1，而不是求最大值。</p>
+<p>C<br>題目：n*n的西洋棋盤，你是白棋，電腦是黑棋。每一輪你會放一個車到棋盤上的(r, c)，電腦會跟著放到(c, r)上。如果電腦不能放就跳過。問放到不能放時的最終棋盤有幾種可能。<br>很容易觀察到看幾行空的，但方法數並不好想，最後繞了很久才有抓到想法。<br>令dp(i)為i*i格的方法數<br>針對(x, x)有沒有放東西<br>有的狀況-&gt; dp(i-1)<br>沒有的話，可以選擇在(x, ?), (?, x)放-&gt; dp(i-2)*(i-1)*2</p>
+<p>dp問題要確認有沒有順序性的問題，先放後放有沒有影響。</p>
+<p>D<br>題目：n個數的序列，定義f(l, r)為此區間的xor值，找出所有$f(l, r) \oplus a_i&gt;f(l, r), l&lt;=i&lt;=r$的區間數量。<br>不難想到方法，但寫法沒想清楚不好寫。<br>針對區間[l, r]，如果拿掉$a_i$數值變大，代表他的最高bit在區間中出現偶數次。</p>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>當兵心得：浪費時間？</title>
         <author>
@@ -288,10 +560,10 @@
         <link href="https://rryh-tw.github.io/gh-pages/guan-yu-wo.html"/>
         <id>https://rryh-tw.github.io/gh-pages/guan-yu-wo.html</id>
 
-        <updated>2024-04-11T03:36:44+08:00</updated>
+        <updated>2024-05-14T17:51:48+08:00</updated>
             <summary>
                 <![CDATA[
-                    我是誰？ 興趣、學過的東西 人生成就 人生理念 不要強迫自己做不想做的事&hellip;
+                    我是誰？ 興趣、學過的東西 人生成就 國小美展低年級漫畫類全縣第二（大概是美術老師幫我加太多筆） 國小桌球隊內排名賽第一 彰化縣羽球縣長盃國中個人單打第七 台灣資訊奧林匹亞選訓營入選 入營考AC只有兩人解出來的題目 一模AC只有8個人解出來的題目，第二次刻LCA花了一個半小時... 大學曾經一學期修38學分（灌水成分挺高）
                 ]]>
             </summary>
         <content type="html">
@@ -321,11 +593,6 @@
 </ul>
 </li>
 <li>大學曾經一學期修38學分（灌水成分挺高）</li>
-</ul>
-<p>人生理念</p>
-<ul>
-<li>不要強迫自己做不想做的事</li>
-<li>不要客套、謙虛</li>
 </ul>
             ]]>
         </content>
@@ -531,132 +798,6 @@
 <p>*Github：可以想成很厲害的儲存程式碼的雲端硬碟系統。</p>
 <p>寫於10/12</p>
 <p>修改於10/29</p>
-            ]]>
-        </content>
-    </entry>
-    <entry>
-        <title>台北理髮</title>
-        <author>
-            <name>Rémi</name>
-        </author>
-        <link href="https://rryh-tw.github.io/gh-pages/tai-bei-li-fa.html"/>
-        <id>https://rryh-tw.github.io/gh-pages/tai-bei-li-fa.html</id>
-
-        <updated>2024-02-22T02:12:41+08:00</updated>
-            <summary>
-                <![CDATA[
-                    <p>這陣子頭髮留很長，一直想著隨時會收到兵單，若剪頭髮，不久後又要剃光，很沒必要，沒想到這樣一想頭髮已變很長。</p>
-<p>雖然兩個禮拜後就要入伍，但今天老哥要回國，決定還是剪個帥的。第一次在台北剪頭髮，走進一間google評價很高的理髮廳，老闆看到我對我說</p>
-
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                <p>這陣子頭髮留很長，一直想著隨時會收到兵單，若剪頭髮，不久後又要剃光，很沒必要，沒想到這樣一想頭髮已變很長。</p>
-<p>雖然兩個禮拜後就要入伍，但今天老哥要回國，決定還是剪個帥的。第一次在台北剪頭髮，走進一間google評價很高的理髮廳，老闆看到我對我說</p>
-
-<p>：「你是不是昨天也有來？」</p>
-<p>「對...」</p>
-<p>：「我們現在也要打烊了，等一下有事，不好意思。」</p>
-<p>於是就去另一家稍早路過的店。走進店裡和櫃檯的年輕小子尷尬的對看幾秒後。「你們還有營業嗎？」我先開口，今天是中秋節，那時約下午4點半。習慣家鄉的百元剪髮，第一次走進看起來很不平價的理髮廳，「請問有指定的設計師嗎？」「你看起來大概四個月沒剪頭髮了」「頭髮長度若不確定我先幫你剪一個型，如果想修再幫你修短。」</p>
-<p>理髮師看起來不到三十，我回了很多的「嗯」，有點小緊張不太會講話。過程中沒有戴眼鏡，理髮師看起來倒是很俐落，同個地方不會修很久，過程中我們沒有太多的談話。接著是重頭戲：洗頭。</p>
-<p>理髮師說我沒什麼頭皮屑所以用去油的洗髮精就好，「嗯」，上洗髮精，理髮師開始幫我清洗頭部，怎麼按的這麼舒服，心想著拜託按久一點，然而洗髮精佈滿頭部盡情戳揉的時間也是過得很快，我小失落的接受這一切，沒想到沖完頭髮後是第二波，我再也不確定究竟是洗髮精還是護髮潤髮，被按壓頭部的痛快感得以延續下去，理髮師的手還真有勁，壓遍頭部的每一塊肌膚，接著還有熱敷環節，用熱毛巾蓋著額頭與眼睛，無比的放鬆，最後是第三波的洗頭，只能確定那香味又換了一種，始終不敢開口問頭髮現在正產生什麼樣的化學變化。</p>
-<p>整個理髮洗頭套餐799，和我在柏林理髮的價格差不多，我對理髮師有顧及到側面的觀感很滿意，「髮鬢幫你修一下，這樣比較有精神。」不管是不是話術，整個流程讓人很放鬆雀躍，特別是頭部按摩好爽快。等當完兵長完頭髮後再來好好享受一次。</p>
-            ]]>
-        </content>
-    </entry>
-    <entry>
-        <title>SketchUp to Unity大模型轉移</title>
-        <author>
-            <name>Rémi</name>
-        </author>
-        <link href="https://rryh-tw.github.io/gh-pages/sketchup-to-unityda-mo-xing-zhuan-yi.html"/>
-        <id>https://rryh-tw.github.io/gh-pages/sketchup-to-unityda-mo-xing-zhuan-yi.html</id>
-
-        <updated>2024-02-22T02:06:57+08:00</updated>
-            <summary>
-                <![CDATA[
-                    這次做了一個專案，需要將模型師在SketchUp做的模型轉到Unity。 參考了網路上的影片，只需要將SketchUp的檔案export成.fbx for Unity的檔案類型就行了。 實際操作遇到一個很大的問題，導入Unity的模型當到無法操作。&hellip;
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                <p>這次做了一個專案，需要將模型師在SketchUp做的模型轉到Unity。</p>
-<p>參考了網路上的影片，只需要將SketchUp的檔案export成.fbx for Unity的檔案類型就行了。</p>
-<p>實際操作遇到一個很大的問題，導入Unity的模型當到無法操作。</p>
-<p>一開始以為是筆電效能太差，但換成桌機後，效果還是非常差勁。進一步研究後，發現是因為直接導入會把每個小零件的mesh分別讀進來，導致有上萬個mesh，Unity每幀要處理這麼多物件會炸掉。</p>
-<p>因此就到了本次問題處理的核心：如何將這些mesh合成一個，同時保留Texture和Material。也就是說把上萬個零件組成一個，讓Unity不會炸掉，反正這些場景不會有物件重組的需求。</p>
-<h4>方法一（失敗）：</h4>
-<p>搜尋關鍵字是「SketchUp Blender Unity」，會顯示這個</p>
-<p><a href="https://youtu.be/kQAjpnToj5s?si=Iftw4L4T62lHZo8K" target="null">Optimize Sketchup Files for Unreal Engine or Unity 3D using Blender</a></p>
-<p>做法大致上是將SketchUp導入Blender，把所有Texture壓成2D圖，再把Mesh和Texture圖丟到Unity。</p>
-<p>SketchUp導入Blender不難，試了很多種檔案種類，fbx, dae, obj看起來是很好的選擇。</p>
-<ul>
-<li>fbx可能會有問題，inport到Blender會顯示"ASCII FBX files are not supported"，要轉檔之類的。</li>
-<li>dae檔是最不失真的轉法，所有點線面都會完整被轉過來。</li>
-<li>obj轉過來則是完整一個object。</li>
-</ul>
-<p>在壓Texture遇到了比較大的困難，首先要先把整個建築物的表皮投影到一個2D圖上，這個步驟叫做UV mapping，作法和影片上的大同小異。接著要把Texture印到mapping對應到的地方，這個步驟叫做Bake。</p>
-<p>影片的方法行不通，最後找了很多相關影片才摸熟他的手法，假設最終的成果圖是Bake.png，要在shader editer(應該就是Unity Texture的意思)的每一個Texture加上一個Node如下圖，並且還要選起來：</p>
-<figure class="post__image post__image--center"><img loading="lazy"  src="https://rryh-tw.github.io/gh-pages/media/posts/6/Jie-Tu-2024-02-22-Ling-Chen-1.59.39.png" alt="" width="626" height="442" sizes="100vw" srcset="https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-1.59.39-xs.png 300w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-1.59.39-sm.png 480w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-1.59.39-md.png 768w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-1.59.39-lg.png 1024w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-1.59.39-xl.png 1360w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-1.59.39-2xl.png 1600w"></figure>
-<p class="align-left"><span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">這個Project總共有214個Material，最後想到使用自動點擊器幫我完成這個步驟，也花了好一段時間。</span></p>
-<figure class="post__image post__image--center"><img loading="lazy"  src="https://rryh-tw.github.io/gh-pages/media/posts/6/Jie-Tu-2024-02-22-Ling-Chen-2.00.41.png" alt="" width="230" height="606" sizes="100vw" srcset="https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-2.00.41-xs.png 300w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-2.00.41-sm.png 480w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-2.00.41-md.png 768w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-2.00.41-lg.png 1024w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-2.00.41-xl.png 1360w ,https://rryh-tw.github.io/gh-pages/media/posts/6/responsive/Jie-Tu-2024-02-22-Ling-Chen-2.00.41-2xl.png 1600w"></figure>
-<p>接著要在Render的Render Engine改成Cycle，Bake Type改成Diffuse，開始Bake就能得到一張Texture 2D圖。</p>
-<p class="align-left">雖然最後有Bake成功，但不知道是不是因為模型太大，UV mapping到一張圖全擠在一起，拉到Unity裡Texture貼上去效果很差，建築物全變為七彩的樣子，最後搞了整整兩天以失敗告終。</p>
-<h4>方法二（失敗）：</h4>
-<p><a href="https://youtube.com/shorts/ufAjkzQ3v9U?si=gvT8THXQo6xUSCBE" target="_blank" rel="noopener noreferrer">Merging many objects into one object in Unity</a></p>
-<p>這次換找看看能不能在Unity直接Merge大量的Mesh，還真的有。</p>
-<p>這個方法是使用Unity的Package probuilder，最後不知道是不是因為Mesh太大量，或是有很多層的Group，也是不成功。</p>
-<h4>方法三（成功）：</h4>
-<p>最後又換了一個想法，假設我成功的將SketchUp轉換到Blender了，那我只要學會把Blender的東西轉到Unity就好了。</p>
-<p><a href="https://youtu.be/5UZ-niuRWz8?si=5H3DnuzVh-GG-KeM" target="_blank" rel="noopener noreferrer">How To Export From Blender to Unity 2020</a></p>
-<p>結果方法超簡單，只要將SketchUp輸出成obj，用Blender匯入，再直接從Blender匯出fbx，把這個fbx和第一次從SketchUp輸出的Texture資料夾一起丟到Unity就行了。</p>
-<p>成功的關鍵在於在前面試的過程中有注意到，這樣import到Blender會自動變成一個大Mesh。一開始沒有這樣想是因為覺得一個Mesh就必須對應到一個Texture，看了這個影片後發現不用耶。</p>
-<p>不過轉移的過程中仍然有一些Texture會跑掉，感覺要在Blender那邊自己調整，這部分就不再繼續研究了。</p>
-<p>特別感謝幫助我的各路朋友。</p>
-            ]]>
-        </content>
-    </entry>
-    <entry>
-        <title>資工音樂會心得文</title>
-        <author>
-            <name>Rémi</name>
-        </author>
-        <link href="https://rryh-tw.github.io/gh-pages/zi-gong-yin-le-hui-xin-de-wen.html"/>
-        <id>https://rryh-tw.github.io/gh-pages/zi-gong-yin-le-hui-xin-de-wen.html</id>
-
-        <updated>2024-04-11T15:45:38+08:00</updated>
-            <summary>
-                <![CDATA[
-                    <p>我們系上每年都會舉辦自己的音樂會，在大講堂（可以容納快500人）。因為自己有學過長笛，總覺得有機會還是要才藝表演一下。大一到大三有試著找人一起表演長笛重奏，但認識的朋友不捧場:(，還有一個原因是懶得找伴奏，很慶幸遇到會彈鋼琴的直屬，大四終於有機會上台表演一下。</p>
-
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                <p>我們系上每年都會舉辦自己的音樂會，在大講堂（可以容納快500人）。因為自己有學過長笛，總覺得有機會還是要才藝表演一下。大一到大三有試著找人一起表演長笛重奏，但認識的朋友不捧場:(，還有一個原因是懶得找伴奏，很慶幸遇到會彈鋼琴的直屬，大四終於有機會上台表演一下。</p>
-
-<p>簡述一下學長笛的經歷，我是小五左右接觸長笛，有找老師學，也有參加彰化縣的長笛團以及小型樂團，一路誤打誤撞到高一。高二在德國交換有繼續找老師學習並參加學校樂團，德國學校的音樂氛圍不是開玩笑的，我直接從不知道學長笛是要幹嘛，轉變為超愛長笛。在德國甚至有機會在柏林愛樂音樂廳表演過四次！那又是另一個故事了。</p>
-<p>回到主題，今年報名資工音樂會的組別特別少，只有六組表演，曲子都不到五分鐘，我佔據了三分之一的表演，我的直屬大家庭佔據了四個表演？</p>
-<p>學校其實完全沒空間可以練琴，大一嘗試加入管樂社，但第一次團練長笛被撞到地上，心有點痛就不再參加。管樂社外真的想不到還有哪裡可以練習，上大學只能回家時加減練一下（約兩個月碰一次琴......）。</p>
-<p>大三和直屬約定下次一定要來合作一下，我們在這學期才開始練習（表演兩個月前），每週平均練習0.7次，第二首「春天，來吧」甚至是在表演前一個月才決定的曲目，整個練習時間非常不充裕，但想表演的心促使我在爛也要上去多玩一下。 表演前11天我們小衝刺了一下，只有兩天沒有練到，每天都和直屬一起練個一兩個小時。</p>
-<h3>彩排</h3>
-<p>一到會場和我想像中差有點多，整個場面佈置得有點像disco，色彩繽紛的光，各種音響。 工作人員說一定要用mic，不然後面的人聽不到。我整個有點懷疑人生，把mic掛在長笛上實在太不合理了，麥克風有重量整個重心跑掉，後來試了很久改用耳掛式，麥克風卡在我臉頰的位置，也是很不習慣。</p>
-<p>可能大家不太好理解，但練樂器很大一部分就是在練肌肉記憶，臉上裝了一個mic真的覺得差很多，怎麼樣都不太對。</p>
-<p>大講堂很大，和平常在鋼琴社小琴房練的感覺差很多，沒有任何的回音，聲音出去就不見了，又不能同時演奏，同時在台下聽自己的聲音到底如何。</p>
-<h3>表演前</h3>
-<p>原本想說不要吃東西撐到表演結束，因為之前吃完晚餐練到一半都會很想打嗝。但肚子突然非常餓，還是去全家買了個飯糰和奶油餐包，吃完精神就回來了。吃飽又去有點距離的琴房熱一下笛子，因為後台沒有地方可以讓我吵。</p>
-<h3>表演</h3>
-<p>第一首 <a href="https://www.youtube.com/live/vyx4JZ0Jawk?si=h9yg9bnOeTEXv_Qq&amp;t=2745" target="_blank" rel="noopener">乘著歌聲的翅膀</a>（上半場壓軸） </p>
-<p>這一首我覺得難度非常高，很吃狀態，要表演得好非常難。 第一個音下去就知道不對勁了，可能調音後吹嘴的位置沒調好，整個找不到對的聲音，也有可能只是場地的關係怎麼聽都不是習慣的聲音，我就一直在想我的音色好爛，要怎麼調整回來，然後分心就錯音一堆，整個慘慘的，有點撐著吹完整首的感覺。這首真的是音符簡單，但要吹的好我覺得我功力還不夠，上台再掉個50%水準，只能說以後再練練。</p>
-<p>第二首 <a href="https://www.youtube.com/live/vyx4JZ0Jawk?si=0z29MGObwWOv_9M6&amp;t=6608" target="_blank" rel="noopener">春天，來吧！</a>（下半場壓軸）</p>
-<p>吹完第一首之後肚子開始怪怪的，可能消化不良有點脹氣之類的，整個很不對勁，估計是奶油餐包在我肚子搗蛋，但當然還是得照預定時間上場。</p>
-<p>一開始調音鋼琴一彈下去有點被嚇到，怎麼鋼琴的La比我的高了大概半個音，但我笛頭已經比平常插進去很多了，結果調完後整首音還是都略低不太準，不知道是因為肚子不舒服沒撐好，還是麥克風在作怪。</p>
-<p>不過相較於第一首，我整個有在狀況內，音色也有出來一點點，當然還是有很多練習不足造成的失誤，音不太準，但整體來說我對我的表現非常滿意。</p>
-<h3>結語</h3>
-<p>長笛真的好難，到德國交換期間與老師學習，了解到要發出好的聲音，不單單是擺好嘴型，用力呼氣，而是需要認知身體從上到下的連結與平衡，要怎麼放下重心，我覺得我都還在摸索。透過這次表演，我也更清楚我的缺失，需要再進步的地方，也算是一個很大的收穫。</p>
-<p>謝謝系上籌辦的同學，系上活動大家都很用心的在籌劃，比我練習時間還久，深感歉意。 謝謝教過我的老師們，也謝謝線上或特地跑來聽音樂的朋友。 特別感謝我直屬，在這麼短的時間練好兩首的伴奏，我想練習時，配合我說走就走。第二首的難度又特別高，能在這麼短的時間內就練起來超級厲害，很漂亮的渲染整個曲子的氛圍。</p>
-<p>UPD：這篇在音樂會結束不久後寫的，過了一年決定該修一修文字發表了，這一年我好像都沒有再碰過長笛...... don't ask me why</p>
             ]]>
         </content>
     </entry>
