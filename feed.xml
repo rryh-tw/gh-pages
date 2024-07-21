@@ -3,7 +3,7 @@
     <title>Rémi的部落格</title>
     <link href="https://rryh-tw.github.io/gh-pages/feed.xml" rel="self" />
     <link href="https://rryh-tw.github.io/gh-pages" />
-    <updated>2024-07-21T19:06:14+08:00</updated>
+    <updated>2024-07-21T19:08:31+08:00</updated>
     <author>
         <name>Rémi</name>
     </author>
@@ -17,15 +17,15 @@
         <link href="https://rryh-tw.github.io/gh-pages/bootloader-stack-pointer-debug.html"/>
         <id>https://rryh-tw.github.io/gh-pages/bootloader-stack-pointer-debug.html</id>
 
-        <updated>2024-07-21T19:06:14+08:00</updated>
+        <updated>2024-07-21T19:08:31+08:00</updated>
             <summary>
                 <![CDATA[
-                    ㄐ這次嘗試debug這份bootloader，期望輸出Hello, World!，但輸出玩Hello, World後，會繼續輸出奇怪的字元。 ; boot_sect_simple.asm [org 0x7c00] mov bx, HELLO_MSG call print_string jmp $ HELLO_MSG: db 'Hello, World!', 0 %include "print_string.asm" times 510 - ($-$$) db 0 dw 0xaa55 ; print_string.asm print_string: mov bp, 0x8000 mov sp, bp pusha loop: mov al, [bx] cmp al,&hellip;
+                    這次嘗試debug這份bootloader，期望輸出Hello, World!，但輸出玩Hello, World後，會繼續輸出奇怪的字元。 ; boot_sect_simple.asm [org 0x7c00] mov bx, HELLO_MSG call print_string jmp $ HELLO_MSG: db 'Hello, World!', 0 %include "print_string.asm" times 510 - ($-$$) db 0 dw 0xaa55 ; print_string.asm print_string: mov bp, 0x8000 mov sp, bp pusha loop: mov al, [bx] cmp al,&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
-                <p>ㄐ這次嘗試debug這份bootloader，期望輸出Hello, World!，但輸出玩Hello, World後，會繼續輸出奇怪的字元。</p>
+                <p>這次嘗試debug這份bootloader，期望輸出Hello, World!，但輸出玩Hello, World後，會繼續輸出奇怪的字元。</p>
 <pre class="language-cpp"><code>; boot_sect_simple.asm
 [org 0x7c00]
 mov bx, HELLO_MSG
