@@ -3,12 +3,82 @@
     <title>Rémi的部落格</title>
     <link href="https://rryh-tw.github.io/gh-pages/feed.xml" rel="self" />
     <link href="https://rryh-tw.github.io/gh-pages" />
-    <updated>2024-05-17T16:28:24+08:00</updated>
+    <updated>2024-07-21T19:06:14+08:00</updated>
     <author>
         <name>Rémi</name>
     </author>
     <id>https://rryh-tw.github.io/gh-pages</id>
 
+    <entry>
+        <title>bootloader stack pointer debug</title>
+        <author>
+            <name>Rémi</name>
+        </author>
+        <link href="https://rryh-tw.github.io/gh-pages/bootloader-stack-pointer-debug.html"/>
+        <id>https://rryh-tw.github.io/gh-pages/bootloader-stack-pointer-debug.html</id>
+
+        <updated>2024-07-21T19:06:14+08:00</updated>
+            <summary>
+                <![CDATA[
+                    ㄐ這次嘗試debug這份bootloader，期望輸出Hello, World!，但輸出玩Hello, World後，會繼續輸出奇怪的字元。 ; boot_sect_simple.asm [org 0x7c00] mov bx, HELLO_MSG call print_string jmp $ HELLO_MSG: db 'Hello, World!', 0 %include "print_string.asm" times 510 - ($-$$) db 0 dw 0xaa55 ; print_string.asm print_string: mov bp, 0x8000 mov sp, bp pusha loop: mov al, [bx] cmp al,&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>ㄐ這次嘗試debug這份bootloader，期望輸出Hello, World!，但輸出玩Hello, World後，會繼續輸出奇怪的字元。</p>
+<pre class="language-cpp"><code>; boot_sect_simple.asm
+[org 0x7c00]
+mov bx, HELLO_MSG
+call print_string
+jmp $
+HELLO_MSG:
+	db 'Hello, World!', 0
+
+%include "print_string.asm"
+
+times 510 - ($-$$) db 0
+dw 0xaa55 
+</code></pre>
+<pre class="language-cpp"><code>; print_string.asm
+print_string:
+	mov bp, 0x8000
+	mov sp, bp
+	pusha
+loop:
+	mov al, [bx]
+	cmp al, 0
+	je the_end
+	inc bx
+	mov ah, 0x0e
+	int 0x10
+	jmp loop
+
+the_end:
+	popa
+	ret</code></pre>
+<p>研究發現是乎bp, sp設定位置不對。</p>
+<p>一開始call print_string的時候，會把目前程式執行的位置push到stack裡（asm自動幫我們處理好的），這邊還沒有設定stack的pointer，進入到print_string時，重新設定sp，導致ret時，從stack拿出的東西不如預期，驗證的過程如下。</p>
+<p>首先使用lldb連到qemu的執行檔，在bootloader開始的地方設一個breakpoint。</p>
+<pre class="language-bash"><code>% lldb
+% (lldb) gdb-remote localhost:1234
+% (lldb) b *0x7c00
+% (lldb) c</code></pre>
+<p>接著查看sp register的變化，逐行執行。</p>
+<pre class="language-bash"><code>% (lldb) n
+% (lldb) register read sp</code></pre>
+<p>預期會順利運行，直到jmp到the_end並ret。</p>
+<p>可以觀察到sp在幾個階段的確有變化。</p>
+<p>在call print_string時，從0x6f08-&gt;0x6f06。</p>
+<p>在print_string裡，mov數值過去0x6f06-&gt;0x8000。</p>
+<p>在pusha，popa，數值從0x8000-&gt;0x7???-&gt;0x8000。</p>
+<p>在 <code>-&gt;<span class="s1">0x7c2a: retq</span></code>的地方，在lldb介面手動調回原本sp設定前的數值。</p>
+<pre class="language-bash"><code>%(lldb) register write sp 0x6f06</code></pre>
+<p>終於正常跳出print_string，一切正常了。</p>
+<p>下次能理解為什麼bp, sp應該要在程式一開始就設定才正確了。</p>
+<p> </p>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>rvalue/move</title>
         <author>
@@ -722,82 +792,6 @@ H_1.cpp:#define IOS cin.tie(nullptr)-&gt;sync_with_stdio(false);</code></pre>
 <h2>新訓心得</h2>
 <p>很高興遇到年輕還很有活力的連長，他保持著我們當兵這四個月，不該讓我們覺得是在浪費時間的心態。也很以身作則，例如全世界都拿麥克風講課喊口令，連長很不屑覺得那是觀光團的手法，不碰麥克風永遠聲嘶力竭的喊道153個人都聽得到實屬厲害。</p>
 <p>除了刺槍那兩天真的很厭世，其他的行程體驗都不錯。</p>
-            ]]>
-        </content>
-    </entry>
-    <entry>
-        <title>當兵前傳：大學畢業好閒</title>
-        <author>
-            <name>Rémi</name>
-        </author>
-        <link href="https://rryh-tw.github.io/gh-pages/dang-bing-qian-chuan-bi-ye-liao-ran-hou-ni.html"/>
-        <id>https://rryh-tw.github.io/gh-pages/dang-bing-qian-chuan-bi-ye-liao-ran-hou-ni.html</id>
-            <category term="當兵"/>
-
-        <updated>2024-02-27T20:23:52+08:00</updated>
-            <summary>
-                <![CDATA[
-                    <p>現在是10/12凌晨2點，再六小時後就要當兵......</p>
-<p>6月中旬考完最後一次的期末考，十七年的學生生涯在此按下暫停，終於可以好好放鬆，把課業拋到九霄雲外。</p>
-<p>帶著輕鬆愉快的心情，條列畢業後的待辦事項：</p>
-
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                <p>現在是10/12凌晨2點，再六小時後就要當兵......</p>
-<p>6月中旬考完最後一次的期末考，十七年的學生生涯在此按下暫停，終於可以好好放鬆，把課業拋到九霄雲外。</p>
-<p>帶著輕鬆愉快的心情，條列畢業後的待辦事項：</p>
-
-<ol>
-<li>論文投稿</li>
-<li>NCU APP上架</li>
-<li>APCS暑期課程講課</li>
-<li>德文檢定準備</li>
-<li><strong>Unity工讀專案</strong></li>
-</ol>
-<p>嗯…真不對勁，接著和大家細數這些事，如何耗盡我當兵前的時間與精力。</p>
-<h3><span style="color: #3598db;">論文 - 是助力，還是絆腳石？</span></h3>
-<p>這漫長的旅程始於去年初，大學專題主題是手勢辨識，透過數學方法，試圖分類出即時影像中的人體手勢。老實說我覺得我的研究完全沒有發表價值，但在專題教授的鼓勵下，決定還是嘗試寫出一篇論文，接下了挑戰。</p>
-<p>原本預計去年底完成，課業壓力使我進展緩慢。年初找了新的投稿目標，但再次未能準時完成。畢業後終於有時間和心情，把程式碼重新寫好，實驗做好，全心投入其中，也總算找到這篇論文的價值與完成動力。</p>
-<p>教授聽完報告深夜興沖沖的找到合適的研討會，我們再一次擬好投稿時間，八月底完成。稍微加把勁，開會頻率增加為一個禮拜兩次（畢業了教授還是很照顧我）。</p>
-<p>一切還算順利，直到要統整最後的實驗數據時，我發現我想出的方法很多缺失，數據證明就是個爛方法。我絞盡腦汁設法優化、想解方。程式碼越寫越雜，於是不斷地重寫，加功能，再重寫，再加功能。開會前不斷的熬夜，最終成功的錯過教授理想中的第三次投稿時間......</p>
-<p>繼續的開會與修改，將實驗方法確認、簡化，可惜要當兵了，這讓我一大半大學時光頭痛的頑皮任務，只好「不情願的」交接給學妹做最後收尾。</p>
-<h3><span style="color: #3598db;">NCU APP 上架 - 歷經了三年，只好再n年。</span></h3>
-<p>NCU APP是由大一下與朋友自發性想開發的專案，目的是想讓中央大學的學生有個好用工具，在大學生活更方便。</p>
-<p>我們每年招募成員、培訓、開發，到了大四卻未有實質成果，令我覺得很可惜。大四時，我決定接手處理這看似要石沈大海的專案。一年下來完成度不錯。畢業後不斷的微調、優化，花了幾天研究上架方法，到後來演變為沒空處理放到一邊。很慶幸交接的下一屆負責人很用心，目前快要可以開放大家使用了。</p>
-<figure class="align-center"><a data-original-attrs="{&quot;data-original-href&quot;:&quot;https://blogger.googleusercontent.com/img/a/AVvXsEg5d93XurwuQq-mgxnK_1FCvpWWtDZLzjE9MijDsMfNEIF--x5L1ZvuYwCJNtxnIT7qusorXju-xttzZxt2rVoa5UcRObo2IEbLDaOlU55mRaiVPL6S4nYhXPTzWIf9wb0Qrrhxr0KeYbvZn9WFV0-9lyiS8CxqXd5ZMlfkFIwNelbU1e-ijKQ0SkC6fyQ&quot;,&quot;style&quot;:&quot;&quot;}" href="https://www.blogger.com/blog/post/edit/718738635050331014/5466747577950566946?hl=zh-TW#"><img loading="lazy"  src="https://blogger.googleusercontent.com/img/a/AVvXsEg5d93XurwuQq-mgxnK_1FCvpWWtDZLzjE9MijDsMfNEIF--x5L1ZvuYwCJNtxnIT7qusorXju-xttzZxt2rVoa5UcRObo2IEbLDaOlU55mRaiVPL6S4nYhXPTzWIf9wb0Qrrhxr0KeYbvZn9WFV0-9lyiS8CxqXd5ZMlfkFIwNelbU1e-ijKQ0SkC6fyQ" alt="" width="320" height="118" data-original-height="266" data-original-width="724" data-is-external-image="true"></figure></a></p>
-<h3><span style="color: #3598db;">APCS暑期課程講課 - 當老師真的好難</span></h3>
-<p>畢業後的另一件事是擔任APCS講師，大四下帶了台北高中的APCS課程，不甘心過了一個學期只教授基礎。我決定利用暑假，學生有較少的課業壓力的時間，傳授畢生所學，至少要教到讓他們有日後成為選手的能力，能夠輕鬆自學，當國手。為期五週的課程總算把遞迴講完，二分搜、動態規劃、圖論草草帶過，進度仍與期望有落差。</p>
-<p>教了這幾次課，教書的方法與手段仍然很差勁，如何有趣的引導，讓大家輕易的吸收知識，如何講話更清楚，如何和學生混成朋友，我實在摸不透。</p>
-<h3><span style="color: #3598db;">德文檢定準備 - 就只會嘴巴說說</span></h3>
-<p>畢業後，我預計出國讀研究所，但事情接踵而來，忙到根本沒時間和興致準備語言檢定，所以這部分只能嘆氣。</p>
-<h3><span style="color: #3598db;">Unity工讀專案 - 已經窒息</span></h3>
-<p>畢業後少了課業壓力，以為閒了下來，接了一個工讀機會，工作內容聽一聽只是將建模師的3D模型匯入Unity，再加一些功能就行了，雖然沒有碰過Unity，但作為寫程式的人，應該都有自己寫出遊戲的衝動。評估一下時間和能力，這應該會是有趣的休閒小專案。</p>
-<p>此專案的目標是10月中旬的展覽，9月中是我真正的開工時間，一開始就遇到疑難雜症（參閱<a href="https://rryh-tw.github.io/gh-pages/sketchup-to-unityda-mo-xing-zhuan-yi.html" target="_blank" rel="noopener noreferrer">SketchUp to Unity大模型轉移</a>），緊張了三天連第一步都做不出來，這時收到了兵單，又驚又喜，火上加油，四週的趕工時間硬生生再少了三分之一，嚴格來說，我要在15天內生出一個完整遊戲出來。沒有懷疑人生的時間，五天的摸索，有了個雛形，沒有通宵做不出來的事！</p>
-<p>再進一步的討論展覽方式，決定要使用VR設備讓參觀者互動。</p>
-<p>大事不妙，3D遊戲轉VR基本上是重做的概念。VR算是遊戲中的一個大主題，全名為虛擬實境（Virtual Reality），需要戴VR眼鏡，遊戲搖桿操作，我甚至自己也從來沒玩過。VR遊戲開發尚未到很熱門，網路上的資源不多，這意味著遇到問題較難找出解方，幸好朋友傳了一份大學修課簡報讓我參考。</p>
-<table style="border-collapse: collapse; width: 100%;" border="1">
-<tbody>
-<tr>
-<td class="align-center" style="width: 99.8575%;"><a data-original-attrs="{&quot;data-original-href&quot;:&quot;https://blogger.googleusercontent.com/img/a/AVvXsEg7FMvfzTx2VPsdWuZ9jUGxV_RzZUogt8UlAshLLKkv8CRpLNdlinPXvpq7q2VXYIGDgrYEnwrSn6LHHzbLHLWRO0jHNHb0W64JhdNc66968-90H84uSFmOjKy17YuhckeeFaYe4YhCS9tOwrvA896VgDyp_9ybMCY30EBar97MPjYoVrAXftlMQdi9e_U&quot;,&quot;style&quot;:&quot;&quot;}" href="https://www.blogger.com/blog/post/edit/718738635050331014/5466747577950566946?hl=zh-TW#"><img loading="lazy" src="https://blogger.googleusercontent.com/img/a/AVvXsEg7FMvfzTx2VPsdWuZ9jUGxV_RzZUogt8UlAshLLKkv8CRpLNdlinPXvpq7q2VXYIGDgrYEnwrSn6LHHzbLHLWRO0jHNHb0W64JhdNc66968-90H84uSFmOjKy17YuhckeeFaYe4YhCS9tOwrvA896VgDyp_9ybMCY30EBar97MPjYoVrAXftlMQdi9e_U" alt="" width="302" height="240" data-original-height="603" data-original-width="760" data-is-external-image="true"></a></td>
-</tr>
-<tr>
-<td class="align-center" style="width: 99.8575%;">source: <span data-keep-original-tag="false" data-original-attrs="{&quot;style&quot;:&quot;font-size: var(--article-hero-headline--htag--font-size);&quot;,&quot;face&quot;:&quot;var(--article-hero-headline--htag--font-family)&quot;}"><a data-original-attrs="{&quot;data-original-href&quot;:&quot;https://www.nbcnews.com/mach/science/what-vr-devices-apps-turn-real-world-virtual-ncna857001&quot;,&quot;target&quot;:&quot;_blank&quot;}" href="https://www.blogger.com/blog/post/edit/718738635050331014/5466747577950566946?hl=zh-TW#">What is VR? nbcnews</a></span></td>
-</tr>
-</tbody>
-</table>
-<p>也就是說，我要在剩下10天的時間，把別人一學期的東西搞懂，趕出一個完整性高的期末Project...</p>
-<p>繼續擠壓睡眠時間，高度壓力讓我沒什麼睡覺仍精神抖擻，每天Google到很絕望，也逐漸拼湊出頭盔、搖桿運行原理。五天後，把處理VR遇到的疑難雜症排解完了，腦袋有辦法勾勒出完成的實作程序，鬆了一口氣。</p>
-<p>一樣通宵後的早晨，把成果push的Github*上準備前往台北測試，當我如往常的git add/commit後，git外掛large file system(LFS)因為沒有設定好，把很多檔案內容永久性的改成不相關的東西（詳細問題原因參考這裡：<a href="https://github.com/git-lfs/git-lfs/issues/3128" target="_blank" rel="noopener noreferrer">all pointer file</a>）。這個套件是因為Unity會有很多圖檔，直接push會有問題，第一次用LFS我也不熟，只是照網路上的教學亂複製貼上。簡單來說，檔案永久性刪除了，五天的心血，無數的通宵時間，付之一炬。人生從來沒有如此的絕望。</p>
-<p>整個人失魂落魄地前往台北，所有的難題要再重新面對一次，五天的時間要壓縮到更極致的兩天，早上8點在辦公室研究到晚上11點，正逢雙十連假，要在台北找過夜的旅館又貴又難，在十一點半花了2000訂了青旅，抵達現場門口寫著十一點後不再受理入住，什麼爛系統！此時只覺得人生爛到想發笑，在街頭無助的晃啊晃，總算在凌晨一點找到住宿。</p>
-<p>兩天後，也是當兵的前一天，仍然是通宵後前往台北，我搭七點多停靠站較多的高鐵，可以睡比較久，壓力終究使人無法入眠，最後一天，最後的調整，總算做出可以上得了檯面的作品，在下午一點確認專案大致完成，可以收工了！</p>
-<p>趕緊再搭火車回家，回到彰化下午三點多，終於能和住國外難得回家的哥哥玩耍，拖著疲勞的身體直接去和哥哥打網球，這兩小時，我感受到我的血糖好低，快暈倒了，但這可是兄弟難得的相處時光呀！</p>
-<p>晚餐吃了頓大餐，晚上9:30趕快去剪光頭為今天當兵準備。摸摸頭，哇，馬上就可以進去軍中好好休息，心中滿是喜悅。</p>
-<p> </p>
-<p>*Github：可以想成很厲害的儲存程式碼的雲端硬碟系統。</p>
-<p>寫於10/12</p>
-<p>修改於10/29</p>
             ]]>
         </content>
     </entry>

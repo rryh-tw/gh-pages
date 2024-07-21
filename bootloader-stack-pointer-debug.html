@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="zh-tw"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>bootloader stack pointer debug - Rémi的部落格</title><meta name="description" content="ㄐ這次嘗試debug這份bootloader，期望輸出Hello, World!，但輸出玩Hello, World後，會繼續輸出奇怪的字元。 ; boot_sect_simple.asm [org 0x7c00] mov bx, HELLO_MSG call print_string jmp $ HELLO_MSG: db 'Hello, World!', 0 %include 'print_string.asm' times 510 - ($-$$) db 0 dw 0xaa55 ; print_string.asm print_string: mov bp, 0x8000 mov sp, bp pusha loop: mov al, [bx] cmp al,&hellip;"><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="canonical" href="https://rryh-tw.github.io/gh-pages/bootloader-stack-pointer-debug.html"><link rel="alternate" type="application/atom+xml" href="https://rryh-tw.github.io/gh-pages/feed.xml"><link rel="alternate" type="application/json" href="https://rryh-tw.github.io/gh-pages/feed.json"><meta property="og:title" content="bootloader stack pointer debug"><meta property="og:site_name" content="Rémi的部落格"><meta property="og:description" content="ㄐ這次嘗試debug這份bootloader，期望輸出Hello, World!，但輸出玩Hello, World後，會繼續輸出奇怪的字元。 ; boot_sect_simple.asm [org 0x7c00] mov bx, HELLO_MSG call print_string jmp $ HELLO_MSG: db 'Hello, World!', 0 %include 'print_string.asm' times 510 - ($-$$) db 0 dw 0xaa55 ; print_string.asm print_string: mov bp, 0x8000 mov sp, bp pusha loop: mov al, [bx] cmp al,&hellip;"><meta property="og:url" content="https://rryh-tw.github.io/gh-pages/bootloader-stack-pointer-debug.html"><meta property="og:type" content="article"><link rel="stylesheet" href="https://rryh-tw.github.io/gh-pages/assets/css/style.css?v=6fbb1e8931a5afe843374fd67c192c86"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://rryh-tw.github.io/gh-pages/bootloader-stack-pointer-debug.html"},"headline":"bootloader stack pointer debug","datePublished":"2024-07-21T18:58","dateModified":"2024-07-21T19:06","description":"ㄐ這次嘗試debug這份bootloader，期望輸出Hello, World!，但輸出玩Hello, World後，會繼續輸出奇怪的字元。 ; boot_sect_simple.asm [org 0x7c00] mov bx, HELLO_MSG call print_string jmp $ HELLO_MSG: db 'Hello, World!', 0 %include 'print_string.asm' times 510 - ($-$$) db 0 dw 0xaa55 ; print_string.asm print_string: mov bp, 0x8000 mov sp, bp pusha loop: mov al, [bx] cmp al,&hellip;","author":{"@type":"Person","name":"Rémi","url":"https://rryh-tw.github.io/gh-pages/authors/remi/"},"publisher":{"@type":"Organization","name":"Rémi"}}</script><noscript><style>img[loading] {
+                    opacity: 1;
+                }</style></noscript><script type="text/x-mathjax-config">MathJax.Hub.Config({
+      jax: ["input/TeX", "output/HTML-CSS"],
+      extensions: ["tex2jax.js"],
+      "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] },
+      tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+      TeX: { noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } } },
+      messageStyle: "none"
+    });</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script></head><body><div class="site-container"><header class="top" id="js-header"><a class="logo" href="https://rryh-tw.github.io/gh-pages/">Rémi的部落格</a><nav class="navbar js-navbar"><button class="navbar__toggle js-toggle" aria-label="Menu" aria-haspopup="true" aria-expanded="false"><span class="navbar__toggle-box"><span class="navbar__toggle-inner">Menu</span></span></button><ul class="navbar__menu"><li><a href="https://rryh-tw.github.io/gh-pages/tags/" target="_self">Tags</a></li><li><a href="https://rryh-tw.github.io/gh-pages/guan-yu-wo.html" target="_self">About</a></li></ul></nav></header><main><article class="post"><div class="hero"><header class="hero__content"><div class="wrapper"><div class="post__meta"><time datetime="2024-07-21T18:58">七月 21, 2024</time></div><h1>bootloader stack pointer debug</h1><div class="post__meta post__meta--author"><a href="https://rryh-tw.github.io/gh-pages/authors/remi/" class="feed__author">Rémi</a></div></div></header></div><div class="wrapper post__entry"><p>ㄐ這次嘗試debug這份bootloader，期望輸出Hello, World!，但輸出玩Hello, World後，會繼續輸出奇怪的字元。</p><pre class="language-cpp"><code>; boot_sect_simple.asm
+[org 0x7c00]
+mov bx, HELLO_MSG
+call print_string
+jmp $
+HELLO_MSG:
+	db 'Hello, World!', 0
+
+%include "print_string.asm"
+
+times 510 - ($-$$) db 0
+dw 0xaa55 
+</code></pre><pre class="language-cpp"><code>; print_string.asm
+print_string:
+	mov bp, 0x8000
+	mov sp, bp
+	pusha
+loop:
+	mov al, [bx]
+	cmp al, 0
+	je the_end
+	inc bx
+	mov ah, 0x0e
+	int 0x10
+	jmp loop
+
+the_end:
+	popa
+	ret</code></pre><p>研究發現是乎bp, sp設定位置不對。</p><p>一開始call print_string的時候，會把目前程式執行的位置push到stack裡（asm自動幫我們處理好的），這邊還沒有設定stack的pointer，進入到print_string時，重新設定sp，導致ret時，從stack拿出的東西不如預期，驗證的過程如下。</p><p>首先使用lldb連到qemu的執行檔，在bootloader開始的地方設一個breakpoint。</p><pre class="language-bash"><code>% lldb
+% (lldb) gdb-remote localhost:1234
+% (lldb) b *0x7c00
+% (lldb) c</code></pre><p>接著查看sp register的變化，逐行執行。</p><pre class="language-bash"><code>% (lldb) n
+% (lldb) register read sp</code></pre><p>預期會順利運行，直到jmp到the_end並ret。</p><p>可以觀察到sp在幾個階段的確有變化。</p><p>在call print_string時，從0x6f08-&gt;0x6f06。</p><p>在print_string裡，mov數值過去0x6f06-&gt;0x8000。</p><p>在pusha，popa，數值從0x8000-&gt;0x7???-&gt;0x8000。</p><p>在 <code>-&gt;<span class="s1">0x7c2a: retq</span></code>的地方，在lldb介面手動調回原本sp設定前的數值。</p><pre class="language-bash"><code>%(lldb) register write sp 0x6f06</code></pre><p>終於正常跳出print_string，一切正常了。</p><p>下次能理解為什麼bp, sp應該要在程式一開始就設定才正確了。</p><p> </p></div><footer class="wrapper post__footer"><p class="post__last-updated">This article was updated on 七月 21, 2024</p><div class="post__share"></div><div class="post__bio bio"><div><h3 class="bio__name"><a href="https://rryh-tw.github.io/gh-pages/authors/remi/" rel="author">Rémi</a></h3></div></div></footer></article><nav class="post__nav"><div class="post__nav-inner"><div class="post__nav-prev"><svg width="1.041em" height="0.416em" aria-hidden="true"><use xlink:href="https://rryh-tw.github.io/gh-pages/assets/svg/svg-map.svg#arrow-prev"/></svg> <a href="https://rryh-tw.github.io/gh-pages/rvaluemove.html" class="post__nav-link" rel="prev"><span>Previous</span> rvalue/move</a></div></div></nav></main><footer class="footer"><div class="footer__copyright"><p>Rémi的部落格</p></div><button onclick="backToTopFunction()" id="backToTop" class="footer__bttop" aria-label="Back to top" title="Back to top"><svg><use xlink:href="https://rryh-tw.github.io/gh-pages/assets/svg/svg-map.svg#toparrow"/></svg></button></footer></div><script defer="defer" src="https://rryh-tw.github.io/gh-pages/assets/js/scripts.min.js?v=f47c11534595205f20935f0db2a62a85"></script><script>window.publiiThemeMenuConfig={mobileMenuMode:'sidebar',animationSpeed:300,submenuWidth: 'auto',doubleClickTime:500,mobileMenuExpandableSubmenus:true,relatedContainerForOverlayMenuSelector:'.top'};</script><script>var images = document.querySelectorAll('img[loading]');
+        for (var i = 0; i < images.length; i++) {
+            if (images[i].complete) {
+                images[i].classList.add('is-loaded');
+            } else {
+                images[i].addEventListener('load', function () {
+                    this.classList.add('is-loaded');
+                }, false);
+            }
+        }</script></body></html>
